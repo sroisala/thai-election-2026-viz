@@ -3,43 +3,122 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thai Election 2026 · Visual Analytics</title>
+  <title>เลือกตั้ง 2569 · Visual Analytics</title>
+  <meta name="description" content="Visual analytics of the 2026 Thai general election results for party strategists: seats, geography, battleground margins and candidate-vs-party strength.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
+  <header class="hero wrap">
     <p class="eyebrow">2603646 Information Visualization · Mini Project 2</p>
-    <h1>Thai General Election 2026</h1>
-    <p class="lede">Visual analytics system for exploring the results of the 2026 Thai general election.</p>
-    <p class="banner">🚧 Demo build — the chart below uses <strong>placeholder data</strong>, not real results.</p>
+    <h1>เลือกตั้ง 2569: ชนะที่ไหน ชนะขาดแค่ไหน<br>และต้องสู้ตรงไหนในครั้งหน้า</h1>
+    <p class="lede">เครื่องมือวิเคราะห์ผลการเลือกตั้ง สส. 8 ก.พ. 2569 สำหรับ<strong>ทีมยุทธศาสตร์พรรคการเมือง</strong>
+      ที่ต้องการรู้ว่าฐานเสียงอยู่ที่ไหน เขตไหนต้องรักษา เขตไหนพลิกได้ และควรลงทุนกับตัวผู้สมัครหรือแบรนด์พรรค</p>
+    <div class="kpis" id="kpis"></div>
   </header>
 
-  <main>
-    <section class="card">
-      <div class="card-head">
-        <h2>Seats by party</h2>
-        <label>Show
-          <select id="seatType">
-            <option value="total">Total seats</option>
-            <option value="constituency">Constituency</option>
-            <option value="list">Party-list</option>
-          </select>
-        </label>
+  <nav class="filters" aria-label="ตัวกรอง">
+    <div class="wrap filters-inner">
+      <div class="filter-group">
+        <span class="filter-label">มุมมองของพรรค</span>
+        <div class="chips" id="partyChips" role="radiogroup" aria-label="เลือกพรรค"></div>
       </div>
-      <div id="chart" role="img" aria-label="Bar chart of seats by party"></div>
-      <div id="tooltip" class="tooltip" hidden></div>
+      <div class="filter-group">
+        <span class="filter-label">ภูมิภาค</span>
+        <div class="chips" id="regionChips" role="radiogroup" aria-label="เลือกภูมิภาค"></div>
+      </div>
+      <button class="btn-ghost" id="resetBtn" type="button">ล้างตัวกรอง</button>
+    </div>
+    <div class="wrap selection-bar" id="selectionBar" hidden>
+      <span id="selectionText"></span>
+      <button class="btn-ghost small" id="clearSelection" type="button">ล้างการเลือก</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="card" id="sec-seats">
+      <div class="card-head">
+        <div>
+          <h2><span class="step">1</span>ภาพรวม: ใครได้กี่ที่นั่ง</h2>
+          <p class="sub">500 ที่นั่ง · จุดทึบ = สส.เขต, จุดโปร่ง = สส.บัญชีรายชื่อ · เส้นประ = เสียงข้างมาก 251</p>
+        </div>
+      </div>
+      <div class="seats-grid">
+        <div id="hemicycle" class="hemicycle"></div>
+        <div id="seatTable" class="seat-table"></div>
+      </div>
+    </section>
+
+    <section class="card" id="sec-map">
+      <div class="card-head">
+        <div>
+          <h2><span class="step">2</span>แผนที่ 400 เขต: ฐานเสียงอยู่ที่ไหน</h2>
+          <p class="sub">1 จุด = 1 เขตเลือกตั้ง จัดกลุ่มตามจังหวัดใกล้ตำแหน่งจริง (ทุกเขตขนาดเท่ากัน ไม่ให้จังหวัดใหญ่ดูสำคัญเกินจริง) · ชี้เพื่อดู คลิกเพื่อปักหมุด</p>
+        </div>
+        <div class="seg" id="mapMode" role="radiogroup" aria-label="สีบนแผนที่"></div>
+      </div>
+      <div class="map-grid">
+        <div class="map-wrap">
+          <svg id="map" role="img" aria-label="แผนที่เขตเลือกตั้ง"></svg>
+          <div id="mapLegend" class="legend"></div>
+        </div>
+        <aside id="detail" class="detail" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section class="card" id="sec-margin">
+      <div class="card-head">
+        <div>
+          <h2><span class="step">3</span>สนามชี้ขาด: ชนะ/แพ้ห่างกันกี่ %</h2>
+          <p class="sub" id="marginSub">ระยะห่างคะแนนระหว่างอันดับ 1 กับ 2 (% ของบัตรดี) · ลากบนกราฟเพื่อเลือกช่วง แล้วดูเขตเหล่านั้นบนแผนที่และตาราง</p>
+        </div>
+      </div>
+      <div id="marginInsight" class="insight"></div>
+      <div id="marginChart" class="chart"></div>
+    </section>
+
+    <section class="card" id="sec-split">
+      <div class="card-head">
+        <div>
+          <h2><span class="step">4</span>ตัวคน vs แบรนด์พรรค</h2>
+          <p class="sub" id="splitSub"></p>
+        </div>
+      </div>
+      <div class="split-grid">
+        <div id="splitChart" class="chart"></div>
+        <div id="splitInsight" class="insight side"></div>
+      </div>
+    </section>
+
+    <section class="card" id="sec-table">
+      <div class="card-head">
+        <div>
+          <h2><span class="step">5</span>ตารางข้อมูลรายเขต</h2>
+          <p class="sub">แสดงตามตัวกรองและการเลือกด้านบน · คลิกหัวคอลัมน์เพื่อเรียง · คลิกแถวเพื่อดูรายละเอียดบนแผนที่</p>
+        </div>
+        <input id="search" class="search" type="search" placeholder="ค้นหาจังหวัด / ผู้สมัคร" aria-label="ค้นหา">
+      </div>
+      <div class="table-wrap"><table id="table"></table></div>
     </section>
   </main>
 
-  <footer>
-    <h3>Data sources</h3>
+  <footer class="wrap footer">
+    <h3>แหล่งข้อมูลและวิธีการ</h3>
     <ul>
-      <li>Election Commission of Thailand (ECT) — <a href="https://www.ect.go.th/" target="_blank" rel="noopener">ect.go.th</a> <em>(to be added)</em></li>
+      <li><strong>ผลคะแนนรายเขต (สส.เขต และบัญชีรายชื่อ)</strong>: แบบ สส.6/1 ของ <a href="https://www.ect.go.th/ect_th/th/election-2026/" target="_blank" rel="noopener">สำนักงานคณะกรรมการการเลือกตั้ง (กกต.)</a>
+        แปลงเป็นข้อมูลด้วย OCR โดย ชานนท์ เงินทองดี — <a href="https://github.com/killernay/election-69-OCR-result" target="_blank" rel="noopener">killernay/election-69-OCR-result</a> (ใช้ไฟล์ <code>data/matched</code>)</li>
+      <li><strong>ที่นั่ง สส.บัญชีรายชื่อ 100 ที่</strong>: ตามที่ กกต. รับรองผล 4 มี.ค. 2569 (<a href="https://www.thaipost.net/hi-light/957457/" target="_blank" rel="noopener">ไทยโพสต์</a>)
+        · ตรวจทานยอดรวมกับ <a href="https://thestandard.co/anutin-bhumjaithai-mps-report-parliament/" target="_blank" rel="noopener">THE STANDARD</a> (ภูมิใจไทย 191 ที่นั่ง ตรงกับผลรวมในหน้านี้)</li>
+      <li><strong>ขอบเขตจังหวัด</strong>: <a href="https://github.com/apisit/thailand.json" target="_blank" rel="noopener">apisit/thailand.json</a> (ย่อรูปด้วย mapshaper)</li>
     </ul>
-    <p class="muted">Group project · deployed with GitHub Pages</p>
+    <p class="muted">ข้อจำกัด: ไม่มีข้อมูล 3 เขตต่อประเภท (สส.เขต: กทม. 15, ปราจีนบุรี 2, น่าน 1 · บัญชีรายชื่อ: กทม. 15, ปราจีนบุรี 2, อุดรธานี 6) แสดงเป็นจุดโปร่งบนแผนที่ ·
+      ข้อมูลมาจาก OCR ของเอกสารสแกน บางเขตผลรวมคะแนนไม่ตรงกับบัตรดี (แสดงป้าย ⚠ ในรายละเอียดเขต) ·
+      สส.เขต นับจากผู้ได้คะแนนสูงสุดในข้อมูล ไม่ได้สะท้อนการเลือกตั้งซ่อมหรือการเพิกถอนสิทธิภายหลัง · ชื่อพรรคที่ OCR อ่านผิดถูกจับคู่กับรายชื่อพรรคทางการ 57 พรรค</p>
   </footer>
+
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script src="js/main.js"></script>
