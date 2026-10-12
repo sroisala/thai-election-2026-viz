@@ -1,0 +1,35 @@
+:root {
+  --bg: #f7f7f5; --surface: #ffffff; --text: #1d1d1f; --muted: #6b6b70;
+  --accent: #2f5bea; --accent-hover: #1c3fb8; --border: #e3e3e0; --warn-bg: #fff6db;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141416; --surface: #1d1d20; --text: #ececee; --muted: #9a9aa0;
+    --accent: #7b9bff; --accent-hover: #a9bdff; --border: #2e2e33; --warn-bg: #3a3218;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "IBM Plex Sans Thai", system-ui, sans-serif; line-height: 1.5;
+}
+header, main, footer { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 48px; }
+.eyebrow { color: var(--muted); font-size: .85rem; margin: 0; }
+h1 { margin: .25rem 0 .5rem; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.lede { color: var(--muted); margin-top: 0; }
+.banner { background: var(--warn-bg); padding: 8px 12px; border-radius: 8px; font-size: .9rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 24px 0; position: relative; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.card-head h2 { margin: 0; font-size: 1.15rem; }
+select { font: inherit; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+#chart svg { width: 100%; height: auto; display: block; }
+.bar { fill: var(--accent); transition: fill .15s; }
+.bar:hover { fill: var(--accent-hover); }
+.axis text { fill: var(--muted); font-size: 12px; }
+.axis path, .axis line { stroke: var(--border); }
+.label { fill: var(--text); font-size: 12px; }
+.tooltip { position: absolute; pointer-events: none; background: var(--text); color: var(--bg); padding: 6px 10px; border-radius: 6px; font-size: .85rem; }
+footer { padding-bottom: 48px; color: var(--muted); font-size: .9rem; }
+footer a { color: var(--accent); }
+.muted { color: var(--muted); }
