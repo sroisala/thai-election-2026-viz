@@ -1,0 +1,2853 @@
+{
+  "meta": {
+    "title": "การย้ายพรรคของ สส. ชุดเลือกตั้ง 2566 (ช่วง 2562–2569)",
+    "records": 198,
+    "generated": "2026-11-12",
+    "sources": [
+      {
+        "name": "Rocket Media Lab – เลือกตั้ง '66",
+        "url": "https://docs.google.com/spreadsheets/d/1LhZI4UEEE0k3wT6yyN8GExmXSQg6OUvs9j3zppJbpeQ/htmlview",
+        "used_for": [
+          "2562.party",
+          "2562.was_mp",
+          "2566.vs_2562"
+        ]
+      },
+      {
+        "name": "Active Data Lab – รายชื่ออดีต สส. ย้ายพรรคในการเลือกตั้ง 69",
+        "url": "https://docs.google.com/spreadsheets/d/1elrsQfNITsUIzT_PSh7hqITyZwJTCLPXyEP5o41Pu10/htmlview",
+        "used_for": [
+          "2566",
+          "2568",
+          "2569"
+        ]
+      }
+    ],
+    "notes": [
+      "มีเฉพาะ สส. ชุด 2566 ที่ย้ายพรรคจริงอย่างน้อย 1 ครั้ง (ไม่รวมข่าวลือ)",
+      "2562.party = พรรคล่าสุดก่อนปี 2566 ตามแหล่งข้อมูล (\"พรรค 62/หรืออดีต\") บางคนเป็นพรรคก่อนปี 2562 ดู was_mp ประกอบ",
+      "การเปลี่ยนชื่อ/สืบทอดพรรค (อนาคตใหม่→ก้าวไกล→ประชาชน, เพื่อไทรวมพลัง→ไทรวมพลัง) ไม่นับเป็นการย้ายพรรค",
+      "2568.party = พรรคล่าสุดในฐานข้อมูลรัฐสภา ก่อนยุบสภา",
+      "ค่า null = ไม่มีข้อมูลในแหล่งต้นทาง"
+    ],
+    "enums": {
+      "switches.type": [
+        "moved",
+        "expelled"
+      ],
+      "2569.status": [
+        "stayed",
+        "moved",
+        "not_running",
+        "unconfirmed",
+        "unknown"
+      ]
+    }
+  },
+  "mps": [
+    {
+      "id": "mp66-4",
+      "name": "กรวีร์ สาราคำ",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุดรธานี", "district": 5, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "อุดรธานี", "district": 5, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-5",
+      "name": "กระแสร์ ตระกูลพรพงศ์",
+      "elections": {
+        "2562": {"party": "พลังท้องถิ่นไท", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "หนองคาย", "district": 1, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "พลังประชารัฐ", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังท้องถิ่นไท", "to": "พลังประชารัฐ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-8",
+      "name": "กฤดิทัช แสงธนโยธิน",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ใหม่", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ใหม่", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-9",
+      "name": "กฤษฏิ์ ชีวะธรรมานนท์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "ชลบุรี", "district": 6, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชน", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-11",
+      "name": "กฤษณา สีหลักษณ์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุตรดิตถ์", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-13",
+      "name": "กัณวีร์ สืบแสง",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "เป็นธรรม", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "เป็นธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "พลวัต", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เป็นธรรม", "to": "พลวัต", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-17",
+      "name": "กาญจนา จังหวะ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ชัยภูมิ", "district": 4, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-18",
+      "name": "กานสินี โอภาสรังสรรค์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-21",
+      "name": "กิตติ สมทรัพย์",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ร้อยเอ็ด", "district": 6, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-25",
+      "name": "กุลวลี นพอมรบดี",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ราชบุรี", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-27",
+      "name": "เกรียงไกร กิตติธเนศวร",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครนายก", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-28",
+      "name": "เกรียงยศ สุดลาภา",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 11},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-32",
+      "name": "โกศล ปัทมะ",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครราชสีมา", "district": 6, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-34",
+      "name": "ขัตติยา สวัสดิผล",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 20},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-38",
+      "name": "คอซีย์ มามุ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ปัตตานี", "district": 2, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "ปัตตานี", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-40",
+      "name": "คุณากร มั่นนทีรัย",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "นนทบุรี", "district": 6, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชน", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-41",
+      "name": "จตุพร กมลพันธ์ทิพย์",
+      "elections": {
+        "2562": {"party": null, "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ราชบุรี", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-44",
+      "name": "จักพันธ์ ปิยพรไพบูลย์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "ประจวบคีรีขันธ์", "district": 2, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-46",
+      "name": "จักรวาล ชัยวิรัตน์นุกูล",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "สุโขทัย", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-47",
+      "name": "จักรัตน์ พั้วช่วย",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 2, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-48",
+      "name": "จาตุรนต์ ฉายแสง",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 13},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-49",
+      "name": "จำลอง ภูนวนทา",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "กาฬสินธุ์", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-52",
+      "name": "จิรวุฒิ สิงห์โตทอง",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ชลบุรี", "district": 4, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อไทย", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-56",
+      "name": "จีรเดช ศรีวิราช",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "พะเยา", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-57",
+      "name": "จุติ ไกรฤกษ์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 9},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-64",
+      "name": "ฉกาจ พัฒนกิจวิบูลย์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "พังงา", "district": 2, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "พังงา", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-67-1",
+      "name": "เฉลิม อยู่บำรุง",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 5},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "พลังประชารัฐ", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "พลังประชารัฐ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-70",
+      "name": "ชญาภา สินธุไพร",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ร้อยเอ็ด", "district": 8, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-72",
+      "name": "ชนนพัฒฐ์ นาคสั้ว",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "สงขลา", "district": 4, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": "district", "province": "สงขลา", "district": 4, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-74-2",
+      "name": "เกชา ศักดิ์สมบูรณ์",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 17},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-81",
+      "name": "ชัชวาล แพทยาไทย",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ไทยสร้างไทย", "seat": "district", "province": "ร้อยเอ็ด", "district": 7, "list_no": null},
+        "2568": {"party": "ไทยสร้างไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ไทยสร้างไทย", "status": "stayed", "seat": "district", "province": "ร้อยเอ็ด", "district": 7, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ไทยสร้างไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-83",
+      "name": "ชัชวาลล์ คงอุดม",
+      "elections": {
+        "2562": {"party": "พลังท้องถิ่นไท", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 8},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "รวมไทยสร้างชาติ", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังท้องถิ่นไท", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-84-2",
+      "name": "ศรีญาดา ปาลิมาพันธ์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 30},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-86",
+      "name": "ชัยทิพย์ กมลพันธ์ทิพย์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ราชบุรี", "district": 5, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "พลังประชารัฐ", "type": "moved"},
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-88",
+      "name": "ชัยมงคล ไชยรบ",
+      "elections": {
+        "2562": {"party": "เพื่อแผ่นดิน", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "สกลนคร", "district": 5, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "สกลนคร", "district": 5, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อแผ่นดิน", "to": "พลังประชารัฐ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-89",
+      "name": "ชัยวัฒน์ เป้าเปี่ยมทรัพย์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 13},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-92",
+      "name": "ชาตรี หล้าพรหม",
+      "elections": {
+        "2562": {"party": "ประชาชาติ", "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "สกลนคร", "district": 2, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาชาติ", "to": "ประชาธิปัตย์", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-97",
+      "name": "ชูกัน กุลวงษา",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "นครพนม", "district": 4, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-99",
+      "name": "ชูศักดิ์ คีรีมาศทอง",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "สุโขทัย", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-104",
+      "name": "เชาวฤทธิ์ ขจรพงศ์กีรติ",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "พลังสังคมใหม่", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังสังคมใหม่", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-105",
+      "name": "เชิงชาย ชาลีรินทร์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ชัยภูมิ", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-109",
+      "name": "ไชยา พรหมา",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "หนองบัวลำภู", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": "district", "province": "หนองบัวลำภู", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-110",
+      "name": "ไชยามพวาน มั่นเพียรจิตต์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "กรุงเทพมหานคร", "district": 26, "list_no": null},
+        "2568": {"party": "ไทยก้าวหน้า", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ก้าวไกล", "to": "ไทยก้าวหน้า", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-118",
+      "name": "ฐิติมา ฉายแสง",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ฉะเชิงเทรา", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "ฉะเชิงเทรา", "district": 1, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-122",
+      "name": "ณรงเดช อุฬารกุล",
+      "elections": {
+        "2562": {"party": "เพื่อชาติ", "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "party_list", "province": null, "district": null, "list_no": 38},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "ประชาชน", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อชาติ", "to": "ก้าวไกล", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-133",
+      "name": "ณัฐวุฒิ ประเสริฐสุวรรณ",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "สุพรรณบุรี", "district": 2, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-135",
+      "name": "ดวงฤทธิ์ เบ็ญจาธิกุล ชัยรุ่งเรือง",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 12},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-139",
+      "name": "ตวงทิพย์ จินตะเวช",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "อุบลราชธานี", "district": 11, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-143",
+      "name": "ทรงยศ รามสูต",
+      "elections": {
+        "2562": {"party": "สามัคคีธรรม", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "น่าน", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "สามัคคีธรรม", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-146",
+      "name": "ทรงศักดิ์ ส่งเสริมอุดมชัย",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครสวรรค์", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-149",
+      "name": "ทวี สุระบาล",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ตรัง", "district": 2, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "ตรัง", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-150",
+      "name": "ทศพร เสรีรักษ์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "แพร่", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-157-1",
+      "name": "ธนกร วังบุญคงชนะ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 10},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": false},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-157-2",
+      "name": "อัศวิน ขวัญเมือง",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 20},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ประชาธิปัตย์", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ประชาธิปัตย์", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-164",
+      "name": "ธรรมนัส พรหมเผ่า",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "พะเยา", "district": 1, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": true}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-168",
+      "name": "ธานินท์ นวลวัฒน์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 7, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-169",
+      "name": "ธิวัลรัตน์ อังกินันทน์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "เพชรบุรี", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-172",
+      "name": "ธีระชัย แสนแก้ว",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุดรธานี", "district": 7, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-177-1",
+      "name": "นพดล ปัทมะ",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 15},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-177-2",
+      "name": "รุ่งเรือง พิทยศิริ",
+      "elections": {
+        "2562": {"party": "ไทยรักไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 41},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ประชาชาติ", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักไทย", "to": "เพื่อไทย", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ประชาชาติ", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-178",
+      "name": "นพดล มาตรศรี",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "สุพรรณบุรี", "district": 3, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-180",
+      "name": "นรเสฎฐ์ ศิริโรจนกุล",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครราชสีมา", "district": 12, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "นครราชสีมา", "district": 12, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-181",
+      "name": "นรากร นาเมืองรักษ์",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ร้อยเอ็ด", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-183",
+      "name": "นเรศ ธำรงค์ทิพยคุณ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เชียงใหม่", "district": 9, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-185",
+      "name": "นิคม บุญวิเศษ",
+      "elections": {
+        "2562": {"party": "พลังปวงชนไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 19},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังปวงชนไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-189",
+      "name": "นิพนธ์ คนขยัน",
+      "elections": {
+        "2562": {"party": "เพื่อแผ่นดิน", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "บึงกาฬ", "district": 3, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "บึงกาฬ", "district": 3, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อแผ่นดิน", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-190",
+      "name": "นิยม วิวรรธนดิฐกุล",
+      "elections": {
+        "2562": {"party": "เศรษฐกิจใหม่", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "แพร่", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เศรษฐกิจใหม่", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-191",
+      "name": "นุชนาถ จารุวงษ์เสถียร",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ศรีสะเกษ", "district": 9, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-193",
+      "name": "บัญชา เดชเจริญศิริกุล",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ท้องที่ไทย", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ท้องที่ไทย", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-196",
+      "name": "บุญชัย กิตติธาราทรัพย์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 3, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-197",
+      "name": "บุญยิ่ง นิติกาญจนา",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ราชบุรี", "district": 2, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-200",
+      "name": "ปกรณ์ จีนาคำ",
+      "elections": {
+        "2562": {"party": null, "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "แม่ฮ่องสอน", "district": 1, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-203-1",
+      "name": "ปดิพัทธ์ สันติภาดา",
+      "elections": {
+        "2562": {"party": "อนาคตใหม่", "was_mp": true},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "พิษณุโลก", "district": 1, "list_no": null},
+        "2568": {"party": "เป็นธรรม", "in_office_at_dissolution": false},
+        "2569": {"party": null, "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ก้าวไกล", "to": "เป็นธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-205",
+      "name": "ปรเมษฐ์ จินา",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 5, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-207",
+      "name": "ประภัตร โพธสุธน",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "สุพรรณบุรี", "district": 5, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-208",
+      "name": "ประภา เฮงไพบูลย์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "กาฬสินธุ์", "district": 4, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "พลังประชารัฐ", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ภูมิใจไทย", "to": "พลังประชารัฐ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-210",
+      "name": "ประมวล พงศ์ถาวราเดช",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "ประจวบคีรีขันธ์", "district": 3, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-214",
+      "name": "ประสาท ตันประเสริฐ",
+      "elections": {
+        "2562": {"party": "ชาติพัฒนากล้า", "was_mp": false},
+        "2566": {"party": "ชาติพัฒนากล้า", "seat": "district", "province": "นครสวรรค์", "district": 6, "list_no": null},
+        "2568": {"party": "ชาติพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ชาติพัฒนากล้า", "to": "ชาติพัฒนา", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-217",
+      "name": "ประเสริฐ บุญเรือง",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "กาฬสินธุ์", "district": 6, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-220",
+      "name": "ปริญญา ฤกษ์หร่าย",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "กำแพงเพชร", "district": 4, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": "district", "province": "กำแพงเพชร", "district": 4, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-221",
+      "name": "ปรีดา บุญเพลิง",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ครูไทยเพื่อประชาชน", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ครูไทยเพื่อประชาชน", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-230",
+      "name": "ปิยะรัฐชย์ ติยะไพรัช",
+      "elections": {
+        "2562": {"party": "เพื่อชาติ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "เชียงราย", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "เชียงราย", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-231",
+      "name": "ผกามาศ เจริญพันธ์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "สุรินทร์", "district": 3, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": "district", "province": "สุรินทร์", "district": 3, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-232",
+      "name": "ไผ่ ลิกค์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "กำแพงเพชร", "district": 1, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": "district", "province": "กำแพงเพชร", "district": 1, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-233",
+      "name": "พงศ์พันธ์ ยอดเมืองเจริญ",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "กรุงเทพมหานคร", "district": 33, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อไทย", "to": "ก้าวไกล", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-234",
+      "name": "พงษ์มนู ทองหนัก",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "พิษณุโลก", "district": 3, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-238",
+      "name": "พรชัย ศรีสุริยันโยธิน",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "บุรีรัมย์", "district": 7, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-241",
+      "name": "พรรณสิริ กุลนาถศิริ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "สุโขทัย", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-242",
+      "name": "พริษฐ์ วัชรสินธุ",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "party_list", "province": null, "district": null, "list_no": 11},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "ประชาชน", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "ก้าวไกล", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-244",
+      "name": "พลากร พิมพะนิตย์",
+      "elections": {
+        "2562": {"party": "พลังท้องถิ่นไท", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "กาฬสินธุ์", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "กาฬสินธุ์", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังท้องถิ่นไท", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-246",
+      "name": "พันธ์ศักดิ์ บุญแทน",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 4, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-247",
+      "name": "พาณุวัฒณ์ สะสมทรัพย์",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "นครปฐม", "district": 3, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-248",
+      "name": "พิชชารัตน์ เลาหพงศ์ชนะ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 6},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-255",
+      "name": "พิพิธ รัตนรักษ์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 2, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-258",
+      "name": "พิมพ์พร พรพฤฒิพันธุ์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 1, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-259",
+      "name": "พิมพ์พิชชา ชัยศุภกิจเจริญ",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "พิษณุโลก", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "พิษณุโลก", "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-260",
+      "name": "พิมพ์ภัทรา วิชัยกุล",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "นครศรีธรรมราช", "district": 10, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-263",
+      "name": "พีระเดช ศิริวันสาณฑ์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "นครสวรรค์", "district": 5, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-264-1",
+      "name": "พีระพันธุ์ สาลีรัฐวิภาค",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": false},
+        "2569": {"party": "รวมไทยสร้างชาติ", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-264-2",
+      "name": "อนุชา บูรพชัยศรี",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 14},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-267",
+      "name": "เพชรภูมิ อาภรณ์รัตน์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "กำแพงเพชร", "district": 2, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": "district", "province": "กำแพงเพชร", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-276",
+      "name": "ภาคภูมิ บูลย์ประมุข",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ตาก", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-278",
+      "name": "ภาณุ พรวัฒนา",
+      "elections": {
+        "2562": {"party": "ชาติไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุดรธานี", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ชาติไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-279",
+      "name": "ภูมินทร์ ลีธีระประเสริฐ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ศรีสะเกษ", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-280",
+      "name": "ภูมิพัฒน์ พชรทรัพย์",
+      "elections": {
+        "2562": {"party": "เพื่อชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครพนม", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "นครพนม", "district": 1, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-282",
+      "name": "มณเฑียร สงฆ์ประชา",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "ชัยนาท", "district": 2, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-284",
+      "name": "มนัสนันท์ หลีนวรัตน์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ปทุมธานี", "district": 5, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-288-1",
+      "name": "มุกดาวรรณ เลื่องสีนิล",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "นครศรีธรรมราช", "district": 8, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": false},
+        "2569": {"party": null, "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-291",
+      "name": "ยุทธการ รัตนมาศ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "นครศรีธรรมราช", "district": 4, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-292",
+      "name": "ยูนัยดี วาบา",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "ปัตตานี", "district": 4, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-294",
+      "name": "รภัสสรณ์ นิยะโมสถ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "ลำปาง", "district": 4, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชน", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-304",
+      "name": "รัชนี พลซื่อ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ร้อยเอ็ด", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-306",
+      "name": "ราชิต สุดพุ่ม",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "นครศรีธรรมราช", "district": 1, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-307",
+      "name": "รำพูล ตันติวณิชชานนท์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ไทยสร้างไทย", "seat": "district", "province": "อุบลราชธานี", "district": 9, "list_no": null},
+        "2568": {"party": "ไทยสร้างไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ไทยสร้างไทย", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "ไทยสร้างไทย", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-313-1",
+      "name": "ลิณธิภรณ์ วริณวัชรโรจน์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 29},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-316",
+      "name": "วชิราภรณ์ กาญจนะ",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สุราษฎร์ธานี", "district": 3, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ไทรวมพลัง", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ไทรวมพลัง", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-317",
+      "name": "วรโชติ สุคนธ์ขจร",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 4, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-320-1",
+      "name": "วรรณรัตน์ ชาญนุกูล",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ชาติพัฒนากล้า", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "ชาติพัฒนา", "in_office_at_dissolution": false},
+        "2569": {"party": null, "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ชาติพัฒนากล้า", "to": "ชาติพัฒนา", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-320-2",
+      "name": "อรัญ พันธุมจินดา",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ชาติพัฒนากล้า", "seat": "party_list", "province": null, "district": null, "list_no": 3},
+        "2568": {"party": "ชาติพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ชาติพัฒนากล้า", "to": "ชาติพัฒนา", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-324",
+      "name": "วรวัจน์ เอื้ออภิญญกุล",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "แพร่", "district": 3, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-329",
+      "name": "วราวุธ ศิลปอาชา",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-331",
+      "name": "วัชระ ยาวอหะซัน",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "นราธิวาส", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-334",
+      "name": "วันเพ็ญ พร้อมพัฒน์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 5, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-337",
+      "name": "วารุจ ศิริวัฒน์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุตรดิตถ์", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-338",
+      "name": "วิชัย สุดสวาสดิ์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ชุมพร", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-339",
+      "name": "วิทยา แก้วภราดัย",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 7},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "รวมไทยสร้างชาติ", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-342",
+      "name": "วินัย ภัทรประสิทธิ์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "พิจิตร", "district": 2, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-344",
+      "name": "วิรัช พิมพะนิตย์",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "กาฬสินธุ์", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "district", "province": "กาฬสินธุ์", "district": 1, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-345",
+      "name": "วิริยะ ทองผา",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "มุกดาหาร", "district": 1, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "มุกดาหาร", "district": 1, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-346-2",
+      "name": "สุรสิทธิ์ นิธิวุฒิวรรักษ์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 43},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "ชลบุรี", "district": 6, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-348",
+      "name": "วิลดา อินฉัตร",
+      "elections": {
+        "2562": {"party": "เพื่อชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ศรีสะเกษ", "district": 7, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-356",
+      "name": "วุฒิพงศ์ ทองเหลา",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "ปราจีนบุรี", "district": 2, "list_no": null},
+        "2568": {"party": "ชาติพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ก้าวไกล", "to": "ชาติพัฒนา", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-357",
+      "name": "วุฒิพงษ์ นามบุตร",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "อุบลราชธานี", "district": 2, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-366-2",
+      "name": "นันทนา สงฆ์ประชา",
+      "elections": {
+        "2562": {"party": "ประชาภิวัฒน์", "was_mp": true},
+        "2566": {"party": "ภูมิใจไทย", "seat": "party_list", "province": null, "district": null, "list_no": 6},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาภิวัฒน์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-368",
+      "name": "ศาสตรา ศรีปาน",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "สงขลา", "district": 2, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "สงขลา", "district": 2, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-376",
+      "name": "ศุภโชค ศรีสุขจร",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "นครปฐม", "district": 1, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-383",
+      "name": "สงคราม กิจเลิศไพโรจน์",
+      "elections": {
+        "2562": {"party": "เพื่อชาติ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 16},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-383-2",
+      "name": "เพ็ญชิสา หงษ์อุปถัมภ์ชัย",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 31},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-385",
+      "name": "สมเกียรติ ตันดิลกตระกูล",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครราชสีมา", "district": 5, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-389",
+      "name": "สมบัติ ยะสินธุ์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "แม่ฮ่องสอน", "district": 2, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-392",
+      "name": "สมยศ พลายด้วง",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "สงขลา", "district": 3, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-393-1",
+      "name": "สมศักดิ์ เทพสุทิน",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 11},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-393-3",
+      "name": "เชิดชัย ตันติศิรินทร์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 35},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-397",
+      "name": "สรชัด สุจิตต์",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "สุพรรณบุรี", "district": 1, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-399",
+      "name": "สรรพภัญญู ศิริไปล์",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "มหาสารคาม", "district": 4, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-400",
+      "name": "สรรเพชญ บุญญามณี",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "สงขลา", "district": 1, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-402",
+      "name": "สรวีย์ ศุภปณิตา",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "ปทุมธานี", "district": 1, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "ก้าวไกล", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-403",
+      "name": "สรัสนันท์ อรรณนพพร",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ขอนแก่น", "district": 9, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-408",
+      "name": "สะถิระ เผือกประพันธุ์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ชลบุรี", "district": 10, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-410",
+      "name": "สัญญา นิลสุพรรณ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "นครสวรรค์", "district": 3, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-411",
+      "name": "สันต์ แซ่ตั้ง",
+      "elections": {
+        "2562": {"party": "รวมพลังประชาชาติไทย", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ชุมพร", "district": 2, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "รวมพลังประชาชาติไทย", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-412",
+      "name": "สัมพันธ์ มะยูโซ๊ะ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "นราธิวาส", "district": 3, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-413",
+      "name": "สัมฤทธิ์ แทนทรัพย์",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "ชัยภูมิ", "district": 3, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-415",
+      "name": "สาเหะมูหามัด อัลอิดรุส",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาชาติ", "seat": "district", "province": "ปัตตานี", "district": 5, "list_no": null},
+        "2568": {"party": "ประชาชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "ปัตตานี", "district": 5, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-419",
+      "name": "สินธพ แก้วพิจิตร",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "นครปฐม", "district": 2, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-423-1",
+      "name": "สุชาติ ชมกลิ่น",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 5},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": false},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-423-2",
+      "name": "ทิพานัน ศิริชนะ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 18},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "รวมไทยสร้างชาติ", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-424-1",
+      "name": "สุชาติ ตันเจริญ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 8},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-424-2",
+      "name": "เอกพร รักความสุข",
+      "elections": {
+        "2562": {"party": "พลเมืองไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 38},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลเมืองไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-425",
+      "name": "สุณัฐชา โล่สถาพรพิพิธ",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "ตรัง", "district": 3, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-426-1",
+      "name": "สุดารัตน์ เกยุราพันธุ์",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "ไทยสร้างไทย", "seat": "party_list", "province": null, "district": null, "list_no": 1},
+        "2568": {"party": "ไทยสร้างไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "ไทยสร้างไทย", "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อไทย", "to": "ไทยสร้างไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-427",
+      "name": "สุดารัตน์ พิทักษ์พรพัลลภ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "อุบลราชธานี", "district": 7, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-428-2",
+      "name": "ก่อแก้ว พิกุลทอง",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 36},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-429",
+      "name": "สุทธิชัย จรูญเนตร",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "อุบลราชธานี", "district": 5, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-431",
+      "name": "สุธรรม จริตงาม",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "นครศรีธรรมราช", "district": 6, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "district", "province": "นครศรีธรรมราช", "district": 6, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-432",
+      "name": "สุธรรม แสงประทุม",
+      "elections": {
+        "2562": {"party": "ไทยรักษาชาติ", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 28},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "not_running", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ไทยรักษาชาติ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-433",
+      "name": "สุพล จุลใส",
+      "elections": {
+        "2562": {"party": "รวมพลังประชาชาติไทย", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ชุมพร", "district": 3, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "รวมพลังประชาชาติไทย", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-434",
+      "name": "สุพัชรี ธรรมเพชร",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "พัทลุง", "district": 1, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-435-2",
+      "name": "ศิริวรรณ ปราศจากศัตรู",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 16},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-438",
+      "name": "สุภาพร สลับศรี",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ไทยสร้างไทย", "seat": "district", "province": "ยโสธร", "district": 1, "list_no": null},
+        "2568": {"party": "ไทยสร้างไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ไทยสร้างไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-444",
+      "name": "สุรพล บุญมา",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครนายก", "district": 1, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-445",
+      "name": "สุรพันธ์ ไวยากรณ์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "district", "province": "นนทบุรี", "district": 1, "list_no": null},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "พลวัต", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชน", "to": "พลวัต", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-448",
+      "name": "สุรินทร์ ปาลาเร่",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "สงขลา", "district": 8, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "กล้าธรรม", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-449-1",
+      "name": "สุริยะ จึงรุ่งเรืองกิจ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "party_list", "province": null, "district": null, "list_no": 7},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": "party_list", "province": null, "district": null, "pm_candidate": true}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-452",
+      "name": "เสมอกัน เที่ยงธรรม",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": true},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "สุพรรณบุรี", "district": 4, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-453-2",
+      "name": "มังกร ยนต์ตระกูล",
+      "elections": {
+        "2562": {"party": "พลังประชาชน", "was_mp": false},
+        "2566": {"party": "เสรีรวมไทย", "seat": "party_list", "province": null, "district": null, "list_no": 2},
+        "2568": {"party": "เสรีรวมไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชาชน", "to": "เสรีรวมไทย", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "เสรีรวมไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-456",
+      "name": "หรั่ง ธุระพล",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "ไทยสร้างไทย", "seat": "district", "province": "อุดรธานี", "district": 3, "list_no": null},
+        "2568": {"party": "ไทยสร้างไทย", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "ไทยสร้างไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-459",
+      "name": "องอาจ วงษ์ประยูร",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "สระบุรี", "district": 4, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "เพื่อไทย", "to": "พลังประชารัฐ", "type": "moved"},
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-463",
+      "name": "อนันต์ ปรีดาสุทธิจิตต์",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ชลบุรี", "district": 5, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-465",
+      "name": "อนุชา นาคาศัย",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ชัยนาท", "district": 1, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": null, "status": "unconfirmed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "รวมไทยสร้างชาติ", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-466",
+      "name": "อนุชา สะสมทรัพย์",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": false},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "นครปฐม", "district": 5, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-468",
+      "name": "อนุรักษ์ จุรีมาศ",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": false},
+        "2566": {"party": "ชาติไทยพัฒนา", "seat": "district", "province": "ร้อยเอ็ด", "district": 1, "list_no": null},
+        "2568": {"party": "ชาติไทยพัฒนา", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ชาติไทยพัฒนา", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-469",
+      "name": "อนุรัตน์ ตันบรรจง",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "พะเยา", "district": 2, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "พลังประชารัฐ", "type": "moved"},
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-472",
+      "name": "อภิชา เลิศพชรกมล",
+      "elections": {
+        "2562": {"party": "ภูมิใจไทย", "was_mp": true},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "นครราชสีมา", "district": 10, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "เพื่อไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ภูมิใจไทย", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-473",
+      "name": "อภิชาติ แก้วโกศล",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "เพชรบุรี", "district": 3, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-476",
+      "name": "อภิสิทธิ์ ไล่สัตรูไกล",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ก้าวไกล", "seat": "party_list", "province": null, "district": null, "list_no": 5},
+        "2568": {"party": "ประชาชน", "in_office_at_dissolution": true},
+        "2569": {"party": "พลวัต", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาชน", "to": "พลวัต", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-477-1",
+      "name": "อมรเทพ สมหมาย",
+      "elections": {
+        "2562": {"party": "ชาติไทยพัฒนา", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "ศรีสะเกษ", "district": 5, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": false},
+        "2569": {"party": null, "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ชาติไทยพัฒนา", "to": "เพื่อไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-479",
+      "name": "อรรถกร ศิริลัทธยากร",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": true},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ฉะเชิงเทรา", "district": 2, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-481",
+      "name": "อรรถพล วงษ์ประยูร",
+      "elections": {
+        "2562": {"party": "เพื่อไทย", "was_mp": false},
+        "2566": {"party": "เพื่อไทย", "seat": "district", "province": "สระบุรี", "district": 2, "list_no": null},
+        "2568": {"party": "เพื่อไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "เพื่อไทย", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-482",
+      "name": "อลงกต มณีกาศ",
+      "elections": {
+        "2562": {"party": "พลังประชารัฐ", "was_mp": false},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "นครพนม", "district": 3, "list_no": null},
+        "2568": {"party": "ภูมิใจไทย", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-483",
+      "name": "อวยพรศรี เชาวลิต",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "ประชาธิปัตย์", "seat": "district", "province": "นครศรีธรรมราช", "district": 9, "list_no": null},
+        "2568": {"party": "ประชาธิปัตย์", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "ประชาธิปัตย์", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-484",
+      "name": "อัคร ทองใจสด",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "เพชรบูรณ์", "district": 6, "list_no": null},
+        "2568": {"party": "พลังประชารัฐ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2568, "to_year": 2569, "from": "พลังประชารัฐ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-485",
+      "name": "อัครเดช วงษ์พิทักษ์โรจน์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": true},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "district", "province": "ราชบุรี", "district": 4, "list_no": null},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-487",
+      "name": "อัครแสนคีรี โล่ห์วีระ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "ชัยภูมิ", "district": 7, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-491",
+      "name": "อามินทร์ มะยูโซ๊ะ",
+      "elections": {
+        "2562": {"party": null, "was_mp": false},
+        "2566": {"party": "พลังประชารัฐ", "seat": "district", "province": "นราธิวาส", "district": 2, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "พลังประชารัฐ", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-496",
+      "name": "เอกนัฏ พร้อมพันธุ์",
+      "elections": {
+        "2562": {"party": "ประชาธิปัตย์", "was_mp": false},
+        "2566": {"party": "รวมไทยสร้างชาติ", "seat": "party_list", "province": null, "district": null, "list_no": 3},
+        "2568": {"party": "รวมไทยสร้างชาติ", "in_office_at_dissolution": true},
+        "2569": {"party": "ภูมิใจไทย", "status": "moved", "seat": "party_list", "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2562, "to_year": 2566, "from": "ประชาธิปัตย์", "to": "รวมไทยสร้างชาติ", "type": "moved"},
+        {"from_year": 2568, "to_year": 2569, "from": "รวมไทยสร้างชาติ", "to": "ภูมิใจไทย", "type": "moved"}
+      ],
+      "switch_count": 2
+    },
+    {
+      "id": "mp66-497",
+      "name": "เอกราษฏฐ์ ช่างเหลา",
+      "elections": {
+        "2562": {"party": null, "was_mp": null},
+        "2566": {"party": "ภูมิใจไทย", "seat": "district", "province": "ขอนแก่น", "district": 4, "list_no": null},
+        "2568": {"party": "กล้าธรรม", "in_office_at_dissolution": true},
+        "2569": {"party": "กล้าธรรม", "status": "stayed", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ภูมิใจไทย", "to": "กล้าธรรม", "type": "expelled"}
+      ],
+      "switch_count": 1
+    },
+    {
+      "id": "mp66-x1",
+      "name": "ณธีภัสร์ กุลเศรษฐสิทธิ์",
+      "elections": {
+        "2562": {"party": "อนาคตใหม่", "was_mp": true},
+        "2566": {"party": "ก้าวไกล", "seat": "party_list", "province": null, "district": null, "list_no": 27},
+        "2568": {"party": "-", "in_office_at_dissolution": false},
+        "2569": {"party": null, "status": "unknown", "seat": null, "province": null, "district": null, "pm_candidate": false}
+      },
+      "switches": [
+        {"from_year": 2566, "to_year": 2568, "from": "ก้าวไกล", "to": "-", "type": "moved"}
+      ],
+      "switch_count": 1
+    }
+  ]
+}
