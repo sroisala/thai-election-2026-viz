@@ -1,0 +1,20 @@
+{
+  "name": "thai-election-2026-viz",
+  "version": "1.0.0",
+  "description": "Mini Project 2 for **2603646 Information Visualization**. One view: a map of Thai constituencies for 2562, 2566 and 2569. The right-hand panel is a national score table, and a clicked district opens three tabs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sroisala/thai-election-2026-viz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sroisala/thai-election-2026-viz/issues"
+  },
+  "homepage": "https://github.com/sroisala/thai-election-2026-viz#readme"
+}

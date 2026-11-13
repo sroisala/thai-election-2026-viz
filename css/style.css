@@ -111,6 +111,15 @@ a { color: #1c5cab; }
 .legend .item { display: inline-flex; align-items: center; gap: 6px; }
 .legend .sw, .sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
 .legend .cap { flex-basis: 100%; text-align: center; color: var(--muted); }
+.compare-key {
+  position: absolute; top: 8px; right: 48px; z-index: 2;
+  padding: 6px 8px 4px; border-radius: 8px;
+  border: 1px solid var(--line-2); background: var(--surface); box-shadow: var(--shadow);
+  pointer-events: none;
+}
+.compare-key[hidden] { display: none; }
+.compare-key-title { font-size: 11px; color: var(--muted); text-align: center; }
+.compare-key svg { display: block; overflow: visible; }
 
 .detail { min-height: 280px; }
 .detail h3 { margin: 0; font-size: 20px; }

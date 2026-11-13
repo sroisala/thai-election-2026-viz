@@ -384,6 +384,33 @@
     ring.transition().duration(420).attr('transform', `translate(${d.xy[0]},${d.xy[1]})`);
   }
 
+  // Boxed example hexagon (top-right of the map) showing which slice is which year.
+  function renderCompareKey() {
+    const box = d3.select('#compareKey');
+    box.selectAll('*').remove();
+    box.attr('hidden', state.compare ? null : '');
+    if (!state.compare) return;
+    const R = 18, cx = 56, cy = 38, half = Math.sqrt(3) / 2 * R;
+    box.append('div').attr('class', 'compare-key-title').text('แต่ละช่องคือปี');
+    const svg = box.append('svg').attr('viewBox', '0 0 112 66').attr('width', 112).attr('height', 66)
+      .attr('role', 'img').attr('aria-label', 'ตัวอย่าง: ครึ่งบนคือปี 2569 ล่างซ้ายคือปี 2566 ล่างขวาคือปี 2562');
+    const g = svg.append('g').attr('transform', `translate(${cx},${cy}) scale(${R / HEX_R})`);
+    const tone = { top: '#8f8d86', left: '#b9b7b0', right: '#d8d6cf' };
+    COMPARE.forEach(s => g.append('path').attr('class', 'hex').attr('d', HEX[s.part])
+      .attr('fill', tone[s.part]).style('stroke-width', 0.35));
+    const label = {
+      top: [cx, cy - R - 7, 'middle'],
+      left: [cx - half - 4, cy + R * 0.5, 'end'],
+      right: [cx + half + 4, cy + R * 0.5, 'start'],
+    };
+    COMPARE.forEach(s => {
+      const [x, y, anchor] = label[s.part];
+      svg.append('text').attr('x', x).attr('y', y).attr('text-anchor', anchor)
+        .attr('dominant-baseline', 'middle').attr('font-size', 11).attr('font-weight', 600)
+        .attr('fill', 'var(--text)').text(s.id);
+    });
+  }
+
   function renderLegend() {
     const year = current();
     const counts = d3.rollups(
@@ -401,6 +428,7 @@
           : state.score === 'list' ? 'สีคือพรรคที่คะแนนบัญชีรายชื่อสูงสุดในเขต'
             : 'สีคือพรรคที่คะแนนเขตบวกบัญชีรายชื่อสูงสุด';
     L.append('span').attr('class', 'cap').text(caption);
+    renderCompareKey();
     counts.slice(0, 6).forEach(([pi, n]) => {
       const it = L.append('span').attr('class', 'item');
       it.append('span').attr('class', 'sw').style('background', color(pi));
