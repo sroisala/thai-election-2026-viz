@@ -160,8 +160,11 @@ a { color: #1c5cab; }
 .stat { background: var(--bg); border-radius: 8px; padding: 8px 10px; }
 .stat .k { font-size: 12px; color: var(--text-2); }
 .stat .v { font-size: 17px; font-weight: 600; }
+.stat .yr { font-size: 10px; color: #a8a6a0; margin-top: 4px; }
 .note, .warn { font-size: 12px; border-radius: 8px; padding: 8px 10px; margin-top: 12px; }
 .note { color: var(--text-2); background: var(--bg); }
+.note-list { margin-bottom: 0; padding-left: 26px; }
+.note-list li + li { margin-top: 2px; }
 .warn { color: #7a4a00; background: #fff4dc; }
 .placeholder { color: var(--text-2); font-size: 13px; margin: 12px 0 0; }
 .econ-stack { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
@@ -190,6 +193,11 @@ a { color: #1c5cab; }
 .score-table td.cand { text-align: left; font-weight: 400; color: var(--text-2); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .score-table .on, .score-table tr.on td { color: var(--text); font-weight: 700; }
 .score-table .sw { margin-right: 6px; vertical-align: -1px; }
+.gpp-table { table-layout: fixed; }
+.gpp-table th:first-child { width: 20%; }
+.gpp-table th:not(:first-child), .gpp-table td:not(:first-child) { width: 40%; text-align: center; }
+.gpp-table td, .gpp-table tr.on td { font-weight: 400; }
+.gpp-table td:first-child, .gpp-table tr.on td:first-child { font-weight: 600; }
 .policy { padding: 8px 0; border-bottom: 1px solid var(--line); }
 .policy .topic { font-size: 12px; color: var(--muted); }
 .policy h4 { margin: 0; font-size: 14px; }
