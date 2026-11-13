@@ -1,0 +1,181 @@
+{
+  "_readme": "ข้อมูลประกอบแผงด้านขวา: นายกฯ รายปี หัวหน้าพรรค และไฟล์โลโก้/รูป ชื่อพรรคต้องสะกดตรงกับในไฟล์ data/years/<ปี>.json รูปที่ไม่มีไฟล์ หน้าเว็บจะแสดงวงกลมสีพรรคพร้อมตัวอักษรแทน วางไฟล์ได้ที่ assets/people/ และ assets/logos/ (ดู assets/README.md)",
+  "pm": {
+    "2562": {
+      "name": "พลเอก ประยุทธ์ จันทร์โอชา",
+      "party": "พลังประชารัฐ",
+      "photo": "assets/people/prayut.png"
+    },
+    "2566": {
+      "name": "เศรษฐา ทวีสิน",
+      "party": "เพื่อไทย",
+      "photo": "assets/people/srettha.png"
+    },
+    "2569": {
+      "name": "อนุทิน ชาญวีรกูล",
+      "party": "ภูมิใจไทย",
+      "photo": "assets/people/anutin-2569.png"
+    }
+  },
+  "leaders": {
+    "2562": {
+      "พลังประชารัฐ": {
+        "name": "พลเอก ประยุทธ์ จันทร์โอชา",
+        "photo": "assets/people/y62-prayut.png"
+      },
+      "เพื่อไทย": {
+        "name": "คุณหญิงสุดารัตน์ เกยุราพันธุ์",
+        "photo": "assets/people/y62-sudarat.png"
+      },
+      "อนาคตใหม่": {
+        "name": "ธนาธร จึงรุ่งเรืองกิจ",
+        "photo": "assets/people/thanathorn.png"
+      },
+      "ประชาธิปัตย์": {
+        "name": "อภิสิทธิ์ เวชชาชีวะ",
+        "photo": "assets/people/abhisit.png"
+      },
+      "ภูมิใจไทย": {
+        "name": "อนุทิน ชาญวีรกูล",
+        "photo": "assets/people/y62-anutin.png"
+      },
+      "เสรีรวมไทย": {
+        "name": "เสรีพิศุทธ์ เตมียเวส",
+        "photo": "assets/people/y62-seri.png"
+      },
+      "ชาติไทยพัฒนา": {
+        "name": "กัญจนา ศิลปอาชา",
+        "photo": "assets/people/kanchana.png"
+      },
+      "ประชาชาติ": {
+        "name": "วันมูหะมัดนอร์ มะทา",
+        "photo": "assets/people/wanmuhamadnoor.png"
+      },
+      "เพื่อชาติ": {
+        "name": "สงคราม กิจเลิศไพโรจน์",
+        "photo": "assets/people/songkram.png"
+      },
+      "เศรษฐกิจใหม่": {
+        "name": "มิ่งขวัญ แสงสุวรรณ์",
+        "photo": "assets/people/mingkwan.png"
+      }
+    },
+    "2566": {
+      "ก้าวไกล": {
+        "name": "พิธา ลิ้มเจริญรัตน์",
+        "photo": "assets/people/y66-01.png"
+      },
+      "เพื่อไทย": {
+        "name": "เศรษฐา ทวีสิน",
+        "photo": "assets/people/y66-02.png"
+      },
+      "ภูมิใจไทย": {
+        "name": "อนุทิน ชาญวีรกูล",
+        "photo": "assets/people/y66-03.png"
+      },
+      "พลังประชารัฐ": {
+        "name": "ประวิตร วงษ์สุวรรณ",
+        "photo": "assets/people/y66-04.png"
+      },
+      "รวมไทยสร้างชาติ": {
+        "name": "พลเอก ประยุทธ์ จันทร์โอชา",
+        "photo": "assets/people/y66-05.png"
+      },
+      "ประชาธิปัตย์": {
+        "name": "จุรินทร์ ลักษณวิศิษฏ์",
+        "photo": "assets/people/y66-06.png"
+      },
+      "ชาติไทยพัฒนา": {
+        "name": "วราวุธ ศิลปอาชา",
+        "photo": "assets/people/y66-07.png"
+      },
+      "ประชาชาติ": {
+        "name": "วันมูหะมัดนอร์ มะทา",
+        "photo": "assets/people/y66-08.png"
+      },
+      "ไทยสร้างไทย": {
+        "name": "สุดารัตน์ เกยุราพันธุ์",
+        "photo": "assets/people/y66-09.png"
+      },
+      "ชาติพัฒนากล้า": {
+        "name": "กรณ์ จาติกวณิช",
+        "photo": "assets/people/y66-10.png"
+      },
+      "เสรีรวมไทย": {
+        "name": "พลตำรวจเอก เสรีพิศุทธ์ เตมียเวส",
+        "photo": "assets/people/y66-seri.png"
+      }
+    },
+    "2569": {
+      "ภูมิใจไทย": {
+        "name": "อนุทิน ชาญวีรกูล",
+        "photo": "assets/people/anutin-2569.png"
+      },
+      "ประชาชน": {
+        "name": "ณัฐพงษ์ เรืองปัญญาวุฒิ",
+        "photo": "assets/people/natthaphong.png"
+      },
+      "เพื่อไทย": {
+        "name": "ยศชนัน วงศ์สวัสดิ์",
+        "photo": "assets/people/yotchanan.png"
+      },
+      "กล้าธรรม": {
+        "name": "ร.อ.ธรรมนัส พรหมเผ่า",
+        "photo": "assets/people/thammanat.png"
+      },
+      "ประชาธิปัตย์": {
+        "name": "อภิสิทธิ์ เวชชาชีวะ",
+        "photo": "assets/people/abhisit-2569.png"
+      },
+      "พลังประชารัฐ": {
+        "name": "ตรีนุช เทียนทอง",
+        "photo": "assets/people/treenuch.png"
+      },
+      "ประชาชาติ": {
+        "name": "พ.ต.อ.ทวี สอดส่อง",
+        "photo": "assets/people/tawee.png"
+      },
+      "รวมไทยสร้างชาติ": {
+        "name": "พีระพันธุ์ สาลีรัฐ",
+        "photo": "assets/people/peerapan-2569.png"
+      },
+      "เศรษฐกิจ": {
+        "name": "พล.อ.รังษี กิติญาณทรัพย์",
+        "photo": "assets/people/rangsi.png"
+      },
+      "ไทรวมพลัง": {
+        "name": "วสวรรธน์ พวงพรศรี"
+      },
+      "ไทยสร้างไทย": {
+        "name": "คุณหญิงสุดารัตน์ เกยุราพันธุ์",
+        "photo": "assets/people/thaisangthai-leader.png"
+      }
+    }
+  },
+  "logos": {
+    "เพื่อไทย": "assets/logos/pheuthai.svg",
+    "ภูมิใจไทย": "assets/logos/bhumjaithai.jpg",
+    "พลังประชารัฐ": "assets/logos/palangpracharath.svg",
+    "ประชาธิปัตย์": "assets/logos/democrat.png",
+    "อนาคตใหม่": "assets/logos/futureforward.svg",
+    "ก้าวไกล": "assets/logos/moveforward.svg",
+    "ประชาชน": "assets/logos/peoplesparty.svg",
+    "รวมไทยสร้างชาติ": "assets/logos/unitedthainationparty.svg",
+    "กล้าธรรม": "assets/logos/klathham.png",
+    "เสรีรวมไทย": "assets/logos/seriruamthai.png",
+    "ชาติไทยพัฒนา": "assets/logos/chartthaipattana.png",
+    "ประชาชาติ": "assets/logos/prachachat.png",
+    "ไทยสร้างไทย": "assets/logos/thaisangthai.svg",
+    "เพื่อชาติ": "assets/logos/pueachat.png",
+    "เศรษฐกิจใหม่": "assets/logos/neweconomic.png",
+    "ชาติพัฒนากล้า": "assets/logos/chartpattanakla.png",
+    "เศรษฐกิจ": "assets/logos/economic.png",
+    "ไทรวมพลัง": "assets/logos/thairuamphlang.png",
+    "โอกาสใหม่": "assets/logos/opportunity-new.png",
+    "เพื่อชาติไทย": "assets/logos/pheuchartthai.png",
+    "รวมใจไทย": "assets/logos/ruamjaithai.png",
+    "รวมพลังประชาชาติไทย": "assets/logos/ruampalangprachachatthai.png",
+    "ชาติพัฒนา": "assets/logos/chartthaipattana2562.png",
+    "พลังท้องถิ่นไท": "assets/logos/palangthongthinthai.png"
+  }
+}
