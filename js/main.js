@@ -174,7 +174,7 @@
   const state = {
     year: index.includes('2569') ? '2569' : YEARS[YEARS.length - 1].id,
     score: 'total', selected: null, tab: 'scores', compare: false,
-    scoreQuery: '', policyQuery: '', policyTopic: '',
+    scoreQuery: '', policyTopic: '', policyOpen: new Set([COMPARE[0].id]),
   };
   let byId = new Map();
   const current = () => yearById.get(state.year);
@@ -504,7 +504,7 @@
   }
   function districtRowHTML(d) {
     const showName = state.score === 'const' || current().singleBallot;
-    const rows = districtRows(d).filter(r => matches(state.scoreQuery, r.party, r.name));
+    const rows = districtRows(d);
     return rows.map((r, i) => `<tr>
       <td class="rank">${i + 1}</td>
       <td class="name"><span class="sw" style="background:${r.color}"></span>${esc(r.party)}</td>
@@ -516,8 +516,8 @@
     const all = policiesFor(partyName);
     const topics = [...new Set(all.map(p => p.topic).filter(Boolean))];
     const topic = topics.includes(state.policyTopic) ? state.policyTopic : '';
-    const rows = all.filter(p => (!topic || p.topic === topic) && matches(state.policyQuery, p.topic, p.title, p.detail));
-    if (!rows.length) return '<p class="placeholder">ไม่พบนโยบายที่ค้น</p>';
+    const rows = all.filter(p => !topic || p.topic === topic);
+    if (!rows.length) return '<p class="placeholder">ไม่มีนโยบายในหมวดนี้</p>';
     return rows.map(p => `<article class="policy">
       ${p.topic ? `<div class="topic">${esc(p.topic)}</div>` : ''}
       <h4>${esc(p.title || 'นโยบาย')}</h4>
@@ -592,7 +592,6 @@
       if (!hit || hit.missing || hit.empty) {
         return `<tr><td class="name">${s.id}</td><td colspan="${span}">${hit && hit.empty ? 'ไม่มีผล' : 'ไม่มีเขตนี้'}</td></tr>`;
       }
-      if (!matches(state.scoreQuery, hit.party.name, hit.L.name)) return '';
       const share = hit.L.good ? fmtPct(hit.L.v / hit.L.good) : '—';
       return `<tr class="${s.id === state.year ? 'on' : ''}">
         <td class="name">${s.id}</td>
@@ -600,7 +599,7 @@
         ${showName ? `<td class="cand">${esc(hit.L.name) || '—'}</td>` : ''}
         <td>${fmtInt(hit.L.v)}</td><td>${share}</td>
       </tr>`;
-    }).join('') || '<tr><td colspan="5">ไม่พบผลที่ค้น</td></tr>';
+    }).join('');
   }
   function compareWinHTML(d) {
     return `<div class="compare-wins">${COMPARE.map(s => {
@@ -612,23 +611,33 @@
       return `<div class="win"><span class="sw" style="background:${hit.party.color}"></span><div class="who">${who}<small>${s.id} · ${esc(hit.party.name)}</small></div></div>`;
     }).join('')}</div>`;
   }
+  // One expandable section per year: the winning party's policies in that district.
   function comparePolicyInner(d) {
     return COMPARE.map(s => {
       const hit = sliceLeader(d.id, s.id);
-      const name = hit && hit.party ? hit.party.name : '';
+      const known = hit && !hit.missing && !hit.empty;
+      const name = known ? hit.party.name : '';
       const all = name ? ((POLICIES && POLICIES[s.id]) || {})[name] || [] : [];
-      const rows = all.filter(p => matches(state.policyQuery, p.topic, p.title, p.detail));
-      const head = `<h4>${s.id}${name ? ` · ${esc(name)}` : ''}</h4>`;
-      if (!hit || hit.missing || hit.empty) return head + '<p class="placeholder">ไม่มีผู้ชนะในปีนี้</p>';
-      if (!all.length) return head + `<p class="placeholder">ยังไม่มีนโยบายของ${esc(name)}</p>`;
-      if (!rows.length) return head + '<p class="placeholder">ไม่พบนโยบายที่ค้น</p>';
-      return head + rows.map(p => `<article class="policy">
+      const count = known ? `${all.length} ข้อ` : '';
+      const body = !known ? '<p class="placeholder">ไม่มีผู้ชนะในปีนี้</p>'
+        : !all.length ? `<p class="placeholder">ยังไม่มีนโยบายของ${esc(name)}</p>`
+          : all.map(p => `<article class="policy">
         ${p.topic ? `<div class="topic">${esc(p.topic)}</div>` : ''}
         <h4>${esc(p.title || 'นโยบาย')}</h4>
         ${p.detail ? `<p>${esc(p.detail)}</p>` : ''}
       </article>`).join('');
+      const open = state.policyOpen.has(s.id) ? ' open' : '';
+      return `<details class="year-policy" data-year="${s.id}"${open}>
+        <summary>
+          <span class="sw" style="background:${known ? hit.party.color : '#e4e2dc'}"></span>
+          <b>${s.id}</b><span class="party">${known ? esc(name) : 'ไม่มีผู้ชนะ'}</span>
+          <span class="count">${count}</span>
+        </summary>
+        <div class="year-policy-body">${body}</div>
+      </details>`;
     }).join('');
   }
+
   function boardHTML() {
     if (state.compare) {
       const unit = state.score === 'const' ? 'ที่นั่งเขต' : state.score === 'list' ? 'ที่นั่งบัญชีรายชื่อ' : 'ที่นั่งรวม';
@@ -687,8 +696,6 @@
         : state.compare
           ? `<table class="score-table"><thead><tr><th>ปี</th><th>พรรค</th>${state.score === 'const' ? '<th>ผู้สมัคร</th>' : ''}<th>คะแนน</th><th>สัดส่วน</th></tr></thead><tbody id="panelBody">${compareDistrictRowHTML(d)}</tbody></table>`
           : `<table class="score-table"><thead><tr><th></th><th>พรรค</th>${showName ? '<th>ผู้สมัคร</th>' : ''}<th>คะแนน</th><th>สัดส่วน</th></tr></thead><tbody id="panelBody">${districtRowHTML(d)}</tbody></table>`;
-    const query = state.tab === 'policy' ? state.policyQuery : state.scoreQuery;
-    const placeholder = state.tab === 'policy' ? 'กรองนโยบาย' : 'กรองพรรคหรือผู้สมัคร';
     const win = state.compare
       ? compareWinHTML(d)
       : (L ? `<div class="win"><span class="sw" style="background:${color(L.pi)}"></span><div class="who">${esc(L.name || partyName)}<small>${esc(partyName)} · ${L.good ? fmtPct(L.v / L.good) : '—'}</small></div></div>` : '<p class="placeholder">ไม่มีผลคะแนนของเขตนี้ในมุมมองที่เลือก</p>');
@@ -697,28 +704,28 @@
       <button type="button" class="btn-ghost" id="unpin">กลับไปตารางรวม</button>
       ${win}
       <div class="tabs" role="tablist">${tabs.map(([id, label]) => `<button type="button" role="tab" data-tab="${id}" aria-selected="${state.tab === id}">${label}</button>`).join('')}</div>
-      ${state.tab === 'gpp' ? '' : `<input id="panelQuery" class="panel-search" type="search" placeholder="${placeholder}" value="${esc(query)}" aria-label="${placeholder}">`}
       <div id="tabBody">${body}</div>
       ${d.gap && state.tab === 'scores' && !state.compare ? `<p class="warn">คะแนน สส.เขต ไม่ตรงกับจำนวนบัตรดี ${Math.abs(d.gap).toFixed(2)}%</p>` : ''}`;
     bindPanel();
   }
+  function bindYearPolicy() {
+    document.querySelectorAll('details.year-policy').forEach(el => {
+      el.ontoggle = () => { state.policyOpen[el.open ? 'add' : 'delete'](el.dataset.year); };
+    });
+  }
   function bindPanel() {
     const q = document.getElementById('panelQuery');
     if (q) q.oninput = e => {
-      const d = state.selected && byId.get(state.selected);
-      if (d && state.tab === 'policy') state.policyQuery = e.target.value;
-      else state.scoreQuery = e.target.value;
+      state.scoreQuery = e.target.value;
       const host = document.getElementById('panelBody');
-      if (!host) return;
-      if (!d) host.innerHTML = state.compare ? compareRowHTML() : overallRowHTML();
-      else if (state.tab === 'policy') host.innerHTML = state.compare ? comparePolicyInner(d) : policyListHTML(leaderOf(d) ? pname(leaderOf(d).pi) : '');
-      else host.innerHTML = state.compare ? compareDistrictRowHTML(d) : districtRowHTML(d);
+      if (host) host.innerHTML = state.compare ? compareRowHTML() : overallRowHTML();
     };
     const unpin = document.getElementById('unpin');
     if (unpin) unpin.onclick = () => { state.selected = null; updateRing(); renderDetail(); };
     document.querySelectorAll('[data-tab]').forEach(btn => {
       btn.onclick = () => { state.tab = btn.dataset.tab; renderDetail(); };
     });
+    bindYearPolicy();
     document.querySelectorAll('[data-topic]').forEach(btn => {
       btn.onclick = () => { state.policyTopic = btn.dataset.topic; renderDetail(); };
     });
