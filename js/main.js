@@ -3,14 +3,15 @@
   const HEX_R = 6;
   const HEX_GAP = 0.4;
   const BKK_PC = '10';
-  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS;
+  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META;
   try {
-    [index, provinces, MAP, POLICIES, PROVINCE_STATS] = await Promise.all([
+    [index, provinces, MAP, POLICIES, PROVINCE_STATS, META] = await Promise.all([
       d3.json('data/years/index.json'),
       d3.json('data/provinces.json'),
       d3.json('data/map.json'),
       d3.json('data/panel/policies.json').catch(() => ({})),
       d3.json('data/panel/province-stats.json').catch(() => ({})),
+      d3.json('data/panel/party-meta.json').catch(() => ({})),
     ]);
     const files = await Promise.all(index.map(id => d3.json(`data/years/${id}.json`)));
     YEARS = files.map(raw => normalizeYear(raw, provinces));
@@ -171,7 +172,7 @@
     map.vh = maxY - minY + pad * 2;
   }
 
-  const state = {
+  const state = { limit: 10, anim: null,
     year: index.includes('2569') ? '2569' : YEARS[YEARS.length - 1].id,
     score: 'total', selected: null, tab: 'scores', compare: false,
     scoreQuery: '', policyTopic: '', policyOpen: new Set([COMPARE[0].id]),
@@ -262,6 +263,7 @@
       .on('click', (e, y) => {
         if (state.year === y.id) return;
         state.year = y.id;
+        state.anim = 'year';
         state.hover = null;
         if (!yearById.get(y.id).districts.some(d => d.id === state.selected)) state.selected = null;
         hideTip();
@@ -274,6 +276,7 @@
       .on('click', (e, s) => {
         if (state.score === s[0]) return;
         state.score = s[0];
+        state.anim = 'score';
         hideTip();
         render();
       });
@@ -465,7 +468,7 @@
     return year.parties
       .filter(p => p.cs + p.pls > 0 || p.cv + p.pv > 0)
       .filter(p => matches(state.scoreQuery, p.name, p.en))
-      .sort((a, b) => metric(b) - metric(a) || b.cs - a.cs)
+      .sort((a, b) => metric(b) - metric(a) || votesOf(year, b, state.score) - votesOf(year, a, state.score) || b.cs - a.cs)
       .map(p => ({ ...p, shareC: p.cv / baseC, shareP: p.pv / baseP }));
   }
   function districtRows(d) {
@@ -492,15 +495,101 @@
       .sort()
       .map(y => ({ year: y, ...PROVINCE_STATS[y][th] }));
   }
+  // ---- รูปหัวหน้าพรรค / นายกฯ / โลโก้พรรค (data/panel/party-meta.json) ----
+  const META_PM = (META && META.pm) || {};
+  const META_LEADERS = (META && META.leaders) || {};
+  const META_LOGOS = (META && META.logos) || {};
+  // ตัวอักษรสำรองเมื่อไม่มีไฟล์รูป: พยัญชนะตัวแรกหลังคำนำหน้า
+  const initialOf = s => {
+    const t = String(s || '').replace(/^(พลเอก|พล\.อ\.|พล\.ต\.ท\.|พลตำรวจเอก|พลตำรวจโท|นางสาว|นาย|นาง|คุณหญิง|ร\.อ\.|ดร\.|ศ\.)\s*/, '');
+    const m = t.match(/[ก-ฮA-Za-z]/);
+    return m ? m[0] : '·';
+  };
+  function avatarHTML(kind, src, label, bg) {
+    const img = src ? `<img src="${esc(src)}" alt="" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()">` : '';
+    const cut = kind === 'person' && /\.png$/i.test(src || '') ? ' cut' : '';
+    return `<span class="av av-${kind}${cut}" style="--c:${esc(bg || '#a8a6a0')}" title="${esc(label)}"><b>${esc(initialOf(label))}</b>${img}</span>`;
+  }
+  const leaderMeta = (yearId, partyName) => (META_LEADERS[yearId] || {})[partyName] || null;
+  // รูปหัวหน้าพรรคซ้อนเลเยอร์: แผ่นสีพรรค -> โลโก้จางเป็นลายน้ำ -> คนตัดพื้น PNG -> ป้ายโลโก้คมชัดทับมุมล่างขวา
+  // จำไฟล์รูปที่โหลดแล้ว เพื่อไม่ให้เงา/ตัวอักษรย่อวาบขึ้นมาตอนวาดตารางใหม่ (กันภาพกระพริบ)
+  const loadedImgs = new Set();
+  window.__ld = loadedImgs;
+  function layHTML(personSrc, logoSrc, label, partyName, color, rank) {
+    const ok = 'decoding="sync" onload="this.parentNode.classList.add(\'ok\');window.__ld.add(this.getAttribute(\'src\'))" onerror="this.remove()"';
+    const pSrc = personSrc ? `${esc(personSrc)}?v=20261113d` : '', lSrc = logoSrc ? `${esc(logoSrc)}?v=20261113d` : '';
+    const person = personSrc ? `<img src="${pSrc}" alt="" ${ok}>` : '';
+    const logo = logoSrc ? `<img src="${lSrc}" alt="" ${ok}>` : '';
+    const pOk = personSrc && loadedImgs.has(pSrc) ? ' ok' : '', lOk = logoSrc && loadedImgs.has(lSrc) ? ' ok' : '';
+    return `<span class="lay${rank ? ' has-no' : ''}" style="--c:${esc(color || '#a8a6a0')}" title="${esc(label)} · ${esc(partyName)}">
+      <i class="plate"></i>
+      <span class="wm${lOk}">${logo}</span>
+      ${rank ? `<b class="no n${String(rank).length}">${rank}</b>` : ''}
+      <span class="pp${pOk}"><svg class="sil" viewBox="0 0 100 120" aria-hidden="true"><path d="M50 14C38 14 31 24 31 37c0 9 3 17 8 22 1 2 1 5 0 8-3 5-12 8-21 11C9 81 4 92 4 120h92c0-28-5-39-14-42-9-3-18-6-21-11-1-3-1-6 0-8 5-5 8-13 8-22 0-13-7-23-19-23Z"/></svg>${person}</span>
+      <span class="badge${lOk}"><b>${esc(initialOf(partyName))}</b>${logo}</span>
+    </span>`;
+  }
+  const partyIdent = (yearId, p, withImg = true, rank = 0) => {
+    const L = leaderMeta(yearId, p.name);
+    if (!withImg) {
+      // ลำดับ 11 ขึ้นไป: แสดงแค่ชื่อพรรค ไม่แสดงรูปหรือชื่อหัวหน้า
+      return `<div class="ident ident-plain">${rank ? `<b class="no-plain">${rank}</b>` : ''}<div class="who">${esc(p.name)}</div></div>`;
+    }
+    return `<div class="ident">
+      ${layHTML(L && L.photo, META_LOGOS[p.name], L ? L.name : p.name, p.name, p.color, rank)}
+      <div class="who">${esc(p.name)}${L && L.photo && L.name ? `<small>${esc(L.name)}</small>` : ''}</div>
+    </div>`;
+  };
+  const fmtVotes = v => (v >= 1e6 ? `${d3.format('.2f')(v / 1e6)} ล้าน` : fmtInt(v));
+  const totalVotes = (year, p) => (year.singleBallot ? p.cv : p.cv + p.pv);
+  const KEYS = ['const', 'list', 'total'];
+  const seatsOf = (p, k) => (k === 'const' ? p.cs : k === 'list' ? p.pls : p.cs + p.pls);
+  const votesOf = (year, p, k) => (k === 'const' ? p.cv : k === 'list' ? p.pv : totalVotes(year, p));
+  function scoreCell(year, p, k, extra = '') {
+    const sel = state.score === k;
+    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span><small>${p.cv + p.pv > 0 ? fmtVotes(votesOf(year, p, k)) : '—'}</small></td>`;
+  }
+  // หน้าต่างแรก: พรรคเรียงจากมากไปน้อยตามคะแนนที่เลือก
   function overallRowHTML() {
-    const col = state.score;
-    const cell = (key, text) => `<td class="${col === key ? 'on' : ''}">${text}</td>`;
-    return overallRows().map((p, i) => `<tr>
-      <td class="rank">${i + 1}</td>
-      <td class="name"><span class="sw" style="background:${p.color}"></span>${esc(p.name)}</td>
-      ${cell('const', fmtInt(p.cs))}${cell('list', fmtInt(p.pls))}${cell('total', fmtInt(p.cs + p.pls))}
-      <td>${fmtPct(p.shareC)}</td><td>${p.pv ? fmtPct(p.shareP) : '—'}</td>
-    </tr>`).join('') || '<tr><td colspan="7">ไม่พบพรรคที่ค้น</td></tr>';
+    const year = current();
+    const all = overallRows();
+    // แสดงตามจำนวนที่เลือกในดรอปดาวน์ (0 = ทุกพรรค) ถ้ากำลังค้นชื่อพรรคจะแสดงทั้งหมดที่ตรง
+    const rows = state.scoreQuery ? all : all.slice(0, state.limit);
+    return rows.map((p, i) => `<tr class="${i === 0 ? 'first' : ''}">
+      <td class="name win-cell"><div class="wrow">${partyIdent(year.id, p, i < 10, i + 1)}</div></td>
+      ${KEYS.map(k => scoreCell(year, p, k)).join('')}
+    </tr>`).join('') || '<tr><td colspan="4">ไม่พบพรรคที่ค้น</td></tr>';
+  }
+  // หน้าต่างสอง: ปีเป็นคอลัมน์ แถวบนคือนายกฯ + โลโก้พรรค แล้วตามด้วยแถวเขต / บัญชีรายชื่อ / รวม
+  const SCORE_LABEL = { const: 'เขต', list: 'บัญชีรายชื่อ', total: 'รวม' };
+  function compareTableHTML() {
+    const pmParty = year => {
+      const pm = META_PM[year.id];
+      const party = pm && year.parties.find(p => p.name === pm.party);
+      return { pm, party };
+    };
+    const head = YEARS.map(y => `<th class="yh ${y.id === state.year ? 'yon' : ''}">${y.id}<small>${y.constSeats + y.listSeats} ที่นั่ง</small></th>`).join('');
+    const who = YEARS.map(y => {
+      const { pm, party } = pmParty(y);
+      if (!pm || !party) return `<td class="yc ${y.id === state.year ? 'yon' : ''}">ยังไม่มีข้อมูลนายกฯ</td>`;
+      return `<td class="yc ${y.id === state.year ? 'yon' : ''}"><div class="ident ident-v">
+        ${layHTML(pm.photo, META_LOGOS[party.name], pm.name, party.name, party.color)}
+        <div class="who">${esc(pm.name)}<small>${esc(party.name)}</small></div>
+      </div></td>`;
+    }).join('');
+    const rows = KEYS.map(k => `<tr class="srow ${state.score === k ? 'row-on' : 'row-dim'}">
+      <th class="lab">${SCORE_LABEL[k]}</th>
+      ${YEARS.map(y => {
+        const { party } = pmParty(y);
+        const cls = `num ${y.id === state.year ? 'yon' : ''}`;
+        if (!party) return `<td class="${cls}">—</td>`;
+        return `<td class="${cls}"><span class="seats">${fmtInt(seatsOf(party, k))}</span><small>${fmtVotes(votesOf(y, party, k))}</small></td>`;
+      }).join('')}
+    </tr>`).join('');
+    return `<table class="score-table board compare-t">
+      <thead><tr><th class="lab"></th>${head}</tr></thead>
+      <tbody><tr class="who-row"><th class="lab">นายกฯ · พรรค</th>${who}</tr>${rows}</tbody>
+    </table>`;
   }
   function districtRowHTML(d) {
     const showName = state.score === 'const' || current().singleBallot;
@@ -552,37 +641,6 @@
     }
     if (focus.note) html += `<p class="note">${esc(focus.note)}</p>`;
     return html;
-  }
-  function compareParties() {
-    const map = new Map();
-    for (const year of YEARS) {
-      for (const p of year.parties) {
-        if ((p.cs || 0) + (p.pls || 0) <= 0 && (p.cv || 0) + (p.pv || 0) <= 0) continue;
-        const row = map.get(p.name) || { name: p.name, en: p.en || '', color: p.color, years: {} };
-        row.years[year.id] = p;
-        if (year.id === state.year) row.color = p.color;
-        map.set(p.name, row);
-      }
-    }
-    const focus = id => {
-      const row = map.get(id);
-      return row && row.years[state.year] ? metric(row.years[state.year]) : -1;
-    };
-    return [...map.values()]
-      .filter(r => matches(state.scoreQuery, r.name, r.en))
-      .sort((a, b) => focus(b.name) - focus(a.name) || a.name.localeCompare(b.name, 'th'));
-  }
-  function compareRowHTML() {
-    const rows = compareParties();
-    if (!rows.length) return '<tr><td colspan="5">ไม่พบพรรคที่ค้น</td></tr>';
-    return rows.map((r, i) => `<tr>
-      <td class="rank">${i + 1}</td>
-      <td class="name"><span class="sw" style="background:${r.color}"></span>${esc(r.name)}</td>
-      ${YEARS.map(y => {
-        const p = r.years[y.id];
-        return `<td class="${y.id === state.year ? 'on' : ''}">${p ? fmtInt(metric(p)) : '—'}</td>`;
-      }).join('')}
-    </tr>`).join('');
   }
   function compareDistrictRowHTML(d) {
     const showName = state.score === 'const';
@@ -637,19 +695,19 @@
       </details>`;
     }).join('');
   }
-
+  function showAllHTML() {
+    const n = overallRows().length;
+    if (state.scoreQuery || state.limit >= n) return '';
+    const step = Math.min(10, n - state.limit);
+    return `<button type="button" class="more-btn" id="moreBtn"><span>ดูเพิ่มอีก ${step} อันดับ</span><small>แสดง ${state.limit} จาก ${n} พรรค</small></button>`;
+  }
   function boardHTML() {
     if (state.compare) {
-      const unit = state.score === 'const' ? 'ที่นั่งเขต' : state.score === 'list' ? 'ที่นั่งบัญชีรายชื่อ' : 'ที่นั่งรวม';
-      return `<p class="eyebrow">เทียบสามปี</p>
-        <h3>${unit}</h3>
-        <p class="prov-line">เรียงตามปี ${current().id} ชื่อพรรคคนละปีไม่ถูกนับเป็นพรรคเดียวกัน</p>
-        <input id="panelQuery" class="panel-search" type="search" placeholder="กรองชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="กรองชื่อพรรค">
-        <table class="score-table"><thead><tr>
-          <th></th><th>พรรค</th>
-          ${YEARS.map(y => `<th class="${y.id === state.year ? 'on' : ''}">${y.id}</th>`).join('')}
-        </tr></thead><tbody id="panelBody">${compareRowHTML()}</tbody></table>
-        <p class="note">แผนที่ใช้เลขเขตในปีที่เลือก ครึ่งบนคือ 2569 ล่างซ้าย 2566 ล่างขวา 2562</p>`;
+      return `<p class="eyebrow">เทียบ 3 ปี</p>
+        <h3>พรรคของนายกรัฐมนตรีในแต่ละปี</h3>
+        <p class="prov-line">ที่นั่งและคะแนนเสียงของพรรคที่นายกฯ สังกัด เทียบกันทั้งสามการเลือกตั้ง</p>
+        ${compareTableHTML()}
+        <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง นายกฯ คือผู้ได้รับเลือกจากสภาหลังเลือกตั้งครั้งนั้น ปี 2566 ภายหลังเปลี่ยนนายกฯ อีกสองครั้ง ชื่อพรรคที่ยุบหรือตั้งใหม่ไม่ถูกนับต่อกัน</p>`;
     }
     const year = current();
     const shown = year.parties.filter(p => metric(p) > 0).sort((a, b) => metric(b) - metric(a));
@@ -662,22 +720,15 @@
     const col = state.score;
     let html = `<p class="eyebrow">ภาพรวมทั้งประเทศ</p>
       <h3>ตารางคะแนน ปี ${year.id}</h3>
-      <p class="prov-line">${lead ? `${esc(lead.name)} อันดับ 1 · ${fmtInt(metric(lead))} ${unit}${gap}` : ''}</p>
-      <div class="scale"><div class="stack">`;
-    shown.forEach(p => {
-      html += `<i title="${esc(p.name)} ${metric(p)}" style="width:${(metric(p) / cap * 100).toFixed(2)}%;background:${p.color}"></i>`;
-    });
-    html += '</div>';
-    if (state.score === 'total') html += `<div class="tick" style="left:${(year.majority / house * 100).toFixed(2)}%"><span>เสียงข้างมาก ${year.majority}</span></div>`;
-    html += `</div>
-      <input id="panelQuery" class="panel-search" type="search" placeholder="กรองชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="กรองชื่อพรรค">
-      <table class="score-table"><thead><tr>
-        <th></th><th>พรรค</th>
-        <th class="${col === 'const' ? 'on' : ''}">เขต</th>
-        <th class="${col === 'list' ? 'on' : ''}">บัญชี</th>
-        <th class="${col === 'total' ? 'on' : ''}">รวม</th>
-        <th>% คะแนนเขต</th><th>% บัญชี</th>
-      </tr></thead><tbody id="panelBody">${overallRowHTML()}</tbody></table>`;
+      <input id="panelQuery" class="panel-search" type="search" placeholder="ค้นหาชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="ค้นหาชื่อพรรค">
+      <table class="score-table board"><thead><tr>
+        <th class="winh">ผู้ชนะตามลำดับ</th>
+        <th class="${col === 'const' ? 'on' : 'dim'}">เขต</th>
+        <th class="${col === 'list' ? 'on' : 'dim'}">บัญชีรายชื่อ</th>
+        <th class="${col === 'total' ? 'on' : 'dim'}">รวม</th>
+      </tr></thead><tbody id="panelBody">${overallRowHTML()}</tbody></table>
+      <div id="moreWrap">${showAllHTML()}</div>
+      <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
     return html;
   }
   function renderDetail() {
@@ -718,8 +769,21 @@
     if (q) q.oninput = e => {
       state.scoreQuery = e.target.value;
       const host = document.getElementById('panelBody');
-      if (host) host.innerHTML = state.compare ? compareRowHTML() : overallRowHTML();
+      if (!host) return;
+      host.innerHTML = overallRowHTML();
+      const mw = document.getElementById('moreWrap');
+      if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
     };
+    const bindMore = () => {
+      const mb = document.getElementById('moreBtn');
+      if (mb) mb.onclick = () => {
+        state.limit += 10;
+        document.getElementById('panelBody').innerHTML = overallRowHTML();
+        document.getElementById('moreWrap').innerHTML = showAllHTML();
+        bindMore();
+      };
+    };
+    bindMore();
     const unpin = document.getElementById('unpin');
     if (unpin) unpin.onclick = () => { state.selected = null; updateRing(); renderDetail(); };
     document.querySelectorAll('[data-tab]').forEach(btn => {
@@ -773,6 +837,16 @@
     renderLabels();
     renderLegend();
     renderDetail();
+    const host = document.getElementById('detail');
+    if (host && state.anim && !state.selected && (state.compare ? state.anim === 'year' : true)) {
+      const cls = state.compare ? 'pop-cmp' : 'pop-' + state.anim;
+      host.classList.remove('pop-year', 'pop-score', 'pop-cmp');
+      void host.offsetWidth;
+      host.classList.add(cls);
+      clearTimeout(render._t);
+      render._t = setTimeout(() => host.classList.remove(cls), 900);
+    }
+    state.anim = null;
   }
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && state.selected) { state.selected = null; updateRing(); renderDetail(); }

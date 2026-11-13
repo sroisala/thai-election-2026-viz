@@ -69,7 +69,7 @@ a { color: #1c5cab; }
 }
 .btn-ghost:hover { color: var(--text); }
 
-.map-grid { display: grid; grid-template-columns: minmax(0, 440px) minmax(280px, 1fr); gap: 64px; align-items: start; }
+.map-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
 .map-wrap { position: relative; width: 100%; margin: 0 auto; }
 #map { width: 100%; height: auto; display: block; touch-action: none; cursor: grab; }
 #map:active { cursor: grabbing; }
@@ -226,3 +226,132 @@ a { color: #1c5cab; }
   .bar { flex-direction: column; align-items: flex-start; gap: 2px; }
 }
 [hidden] { display: none !important; }
+
+/* ---- แผงด้านขวา: ตารางผู้ชนะตามลำดับ และตารางเทียบ 3 ปี ---- */
+.score-table.board th.dim, .score-table.board td.dim { opacity: .42; }
+.score-table.board th.on { color: var(--text); border-bottom: 2px solid var(--text); }
+.score-table.board td.on { background: rgba(20, 20, 18, .06); }
+.score-table.board td.num { white-space: nowrap; line-height: 1.2; }
+.score-table.board td.num .seats { display: block; font-size: 16px; font-weight: 700; }
+.score-table.board td.num small { display: block; margin-top: 1px; font-size: 11px; font-weight: 400; color: var(--text-2); }
+.score-table.board td.name { padding-right: 8px; max-width: 0; }
+.score-table.board th { white-space: normal; line-height: 1.25; vertical-align: bottom; }
+.score-table.board td { vertical-align: middle; padding-top: 8px; padding-bottom: 8px; }
+
+.ident { display: flex; align-items: center; min-width: 0; }
+.ident .who { min-width: 0; margin-left: 8px; font-weight: 600; line-height: 1.3; }
+.ident .who, .ident .who small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ident .who small { display: block; font-weight: 400; font-size: 11px; color: var(--text-2); }
+.av { position: relative; flex: none; display: grid; place-items: center; overflow: hidden; border-radius: 6px; }
+.av b { font-size: 15px; font-weight: 700; line-height: 1; }
+.av img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.av.ok b { visibility: hidden; }
+/* คนเป็นภาพสี่เหลี่ยมแนวตั้งใหญ่ ไม่ตัดเป็นวงกลม */
+.av-person { width: 56px; height: 68px; background: color-mix(in srgb, var(--c) 16%, #fff); color: var(--c); }
+.av-person img { object-fit: cover; object-position: 50% 15%; }
+/* โลโก้แสดงทั้งภาพ ไม่มีพื้นหลังหรือกรอบวงกลม */
+.av-logo { width: 34px; height: 34px; margin-left: 6px; background: none; color: var(--c); overflow: visible; }
+.av-logo img { object-fit: contain; }
+.av-logo b { width: 100%; height: 100%; display: grid; place-items: center; border-radius: 6px; background: color-mix(in srgb, var(--c) 16%, #fff); font-size: 13px; }
+
+/* หน้าต่างแรก: ลำดับอยู่หน้าผู้ชนะ */
+.score-table.board th.winh { width: 46%; text-align: left; white-space: nowrap; }
+.win-cell .wrow { display: flex; align-items: center; min-width: 0; }
+.win-cell .ident { flex: 1 1 auto; }
+
+/* หน้าต่างสอง: ปีเป็นคอลัมน์ ตามแบบร่าง */
+.compare-t { table-layout: fixed; }
+.compare-t th.lab { width: 5.6em; text-align: left; font-weight: 600; color: var(--text-2); font-size: 12px; white-space: normal; }
+.compare-t th.yh { text-align: center; font-size: 16px; font-weight: 700; color: var(--text); }
+.compare-t th.yh small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+.compare-t td.yc { text-align: center; vertical-align: top; padding-top: 10px; padding-bottom: 12px; }
+.compare-t tr.who-row th.lab { vertical-align: top; padding-top: 14px; }
+.compare-t td.num { text-align: center; }
+.compare-t td.yon, .compare-t th.yon { background: rgba(20, 20, 18, .035); }
+.compare-t tr.row-dim th, .compare-t tr.row-dim td { opacity: .42; }
+.compare-t tr.row-on th { color: var(--text); }
+.compare-t tr.row-on td, .compare-t tr.row-on th { background: rgba(20, 20, 18, .07); }
+.compare-t tr.row-on td.yon { background: rgba(20, 20, 18, .11); }
+.compare-t tr.row-on th.lab { box-shadow: inset 3px 0 0 var(--text); }
+.ident-v { flex-direction: column; align-items: center; text-align: center; }
+.ident-v .lay { margin: 0 0 6px; }
+.ident-v .who { margin-left: 0; white-space: normal; overflow: visible; text-overflow: clip; font-size: 12.5px; }
+.ident-v .who small { white-space: normal; overflow: visible; text-overflow: clip; }
+
+/* รูปคนแบบ PNG ตัดพื้นหลัง: ยืนบนแผ่นสีพรรค มีเงา ให้ดูมีมิติ */
+.av-person.cut { overflow: visible; background: none; }
+.av-person.cut::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 74%; border-radius: 8px;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--c) 40%, #fff), color-mix(in srgb, var(--c) 88%, #000)); box-shadow: 0 2px 5px rgba(0,0,0,.18); }
+.av-person.cut img { top: auto; bottom: 0; height: 112%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+.ident-plain { padding-left: 4px; }
+.ident-plain .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+
+/* ซ้อนเลเยอร์: แผ่นสีพรรค / ลายน้ำโลโก้ / คนตัดพื้น / ป้ายโลโก้ */
+.lay { --u: 1px; position: relative; flex: none; display: block; width: calc(138 * var(--u)); height: calc(128 * var(--u)); margin-right: 8px; isolation: isolate; }
+.lay .plate { position: absolute; z-index: 0; left: 0; right: 0; bottom: 0; height: calc(84 * var(--u)); border-radius: calc(16 * var(--u));
+  background: radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--c) 45%, #fff) 0%, var(--c) 55%, color-mix(in srgb, var(--c) 62%, #000) 100%);
+  box-shadow: 0 calc(8 * var(--u)) calc(14 * var(--u)) calc(-6 * var(--u)) rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -2px 6px rgba(0,0,0,.18); }
+.lay .wm { position: absolute; z-index: 1; right: calc(8 * var(--u)); top: calc(50 * var(--u)); width: calc(72 * var(--u)); height: calc(72 * var(--u)); opacity: .32; mix-blend-mode: multiply; filter: grayscale(1) contrast(1.1); pointer-events: none; }
+.lay .wm img, .lay .badge img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.lay .pp { position: absolute; z-index: 2; left: calc(2 * var(--u)); bottom: 0; width: calc(104 * var(--u)); height: calc(128 * var(--u)); display: grid; place-items: center; color: var(--c); }
+.lay .pp b { font-size: calc(30 * var(--u)); font-weight: 700; opacity: .9; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35); }
+.lay .pp img { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 calc(4 * var(--u)) calc(5 * var(--u)) rgba(0,0,0,.5)); }
+.lay .pp.ok b, .lay .badge.ok b { visibility: hidden; }
+.lay .badge { position: absolute; z-index: 3; right: calc(2 * var(--u)); bottom: calc(6 * var(--u)); width: calc(54 * var(--u)); height: calc(54 * var(--u)); padding: calc(5 * var(--u)); box-sizing: border-box;
+  background: #fff; border-radius: calc(13 * var(--u)); display: grid; place-items: center; box-shadow: 0 calc(5 * var(--u)) calc(12 * var(--u)) rgba(0,0,0,.4), 0 0 0 calc(2 * var(--u)) #fff; }
+.lay .badge img { inset: calc(5 * var(--u)); width: calc(100% - 10 * var(--u)); height: calc(100% - 10 * var(--u)); }
+.lay .badge b { font-size: calc(18 * var(--u)); color: var(--c); font-weight: 700; }
+.score-table.board th.winh { width: 54%; }
+.win-cell .who { font-size: 15px; }
+.ident-v .lay { --u: .92px; }
+@media (max-width: 720px) { .lay { --u: .72px; } .ident-v .lay { --u: .62px; } }
+
+/* ไม่มีรูปหัวหน้า: ใช้เงาคน */
+.lay .sil { position: absolute; left: 6%; bottom: 0; width: 88%; height: 96%; fill: color-mix(in srgb, var(--c) 28%, #20242c); stroke: rgba(255,255,255,.35); stroke-width: .8; filter: drop-shadow(0 3px 4px rgba(0,0,0,.45)); }
+.lay .pp.ok .sil { display: none; }
+
+/* ซูมเข้าหาคนดู: คะแนนของคอลัมน์ที่เลือก (ตารางอันดับ) และคอลัมน์ปีที่เลือก (ตารางเทียบ 3 ปี) */
+@keyframes zoom-hold { 0% { transform: scale(.9); opacity: .5; } 55% { transform: scale(calc(var(--z) + .1)); opacity: 1; } 100% { transform: scale(var(--z)); opacity: 1; } }
+@keyframes pop-in { 0% { transform: scale(.88); opacity: .35; } 55% { transform: scale(1.09); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.score-table.board:not(.compare-t) td.num.on .seats, .score-table.board:not(.compare-t) td.num.on small { display: block; --z: 1.4; transform: scale(var(--z)); transform-origin: 100% 50%; }
+.pop-score .score-table.board:not(.compare-t) td.num.on .seats, .pop-score .score-table.board:not(.compare-t) td.num.on small { animation: zoom-hold .55s cubic-bezier(.2,.9,.3,1.2) both; }
+.pop-year .score-table.board:not(.compare-t) .lay { animation: pop-in .6s cubic-bezier(.2,.9,.3,1.2) both; transform-origin: 50% 100%; }
+.pop-year .score-table.board:not(.compare-t) .who { animation: pop-in .55s cubic-bezier(.2,.9,.3,1.2) both; transform-origin: 0 50%; }
+.pop-year .score-table.board:not(.compare-t) td.num .seats { display: inline-block; animation: pop-in .55s cubic-bezier(.2,.9,.3,1.2) both; }
+/* ตารางเทียบ 3 ปี: คอลัมน์ปีที่เลือกซูมค้าง */
+.compare-t td.yon .lay { --z: 1.3; transform: scale(var(--z)); transform-origin: 50% 100%; }
+.compare-t td.yon .who { --z: 1.2; transform: scale(var(--z)); transform-origin: 50% 0; }
+.compare-t td.yon .seats, .compare-t td.yon small { display: block; --z: 1.5; transform: scale(var(--z)); transform-origin: 50% 50%; }
+.pop-cmp .compare-t td.yon .lay, .pop-cmp .compare-t td.yon .who, .pop-cmp .compare-t td.yon .seats, .pop-cmp .compare-t td.yon small { animation: zoom-hold .6s cubic-bezier(.2,.9,.3,1.2) both; }
+@media (prefers-reduced-motion: reduce) { .pop-score *, .pop-year *, .pop-cmp * { animation: none !important; } }
+/* ช่องกรองชื่อพรรคกว้างครึ่งหนึ่ง */
+.panel-search { width: 50%; min-width: 180px; }
+/* ดรอปดาวน์จำนวนพรรค */
+.limit-sel { display: flex; align-items: center; gap: 10px; margin: 12px 0 4px; font-size: 13px; color: var(--text-2, #555); }
+.limit-sel select { font: inherit; padding: 6px 10px; border: 1px solid var(--line, #d9d6cf); border-radius: 8px; background: var(--bg, #fff); color: var(--text, #1b1b19); }
+/* ลำดับท้ายตาราง: ไม่มีจุดสี */
+.ident-plain { padding-left: 4px; }
+
+/* ปุ่มขยายดูเพิ่มทีละ 10 อันดับ */
+.more-btn { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; margin: 12px 0 4px; padding: 10px 12px; font: inherit; font-size: 14px; font-weight: 600; color: var(--text); background: var(--surface); border: 1px dashed var(--line-2); border-radius: 10px; cursor: pointer; }
+.more-btn small { font-weight: 400; font-size: 12px; color: var(--muted); }
+.more-btn:hover { background: var(--bg); border-style: solid; }
+.more-btn span::after { content: " ⌄"; }
+
+/* เลขอันดับตัวเอียงใหญ่ไล่เฉดขาว→เทา อยู่หลังรูปคน ตามแบบอ้างอิง */
+.lay .no { position: absolute; z-index: 1; left: calc(4 * var(--u)); top: calc(26 * var(--u)); font-size: calc(78 * var(--u)); line-height: 1; font-weight: 900; font-style: italic; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #fff 0%, #fff 45%, #b4b9c2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(calc(3 * var(--u)) calc(4 * var(--u)) calc(5 * var(--u)) rgba(0,0,0,.35)); transform: skewX(-6deg); pointer-events: none; }
+.lay .no.n2 { font-size: calc(62 * var(--u)); top: calc(34 * var(--u)); left: calc(2 * var(--u)); letter-spacing: -.08em; }
+.no-plain { flex: none; min-width: 2.2em; margin-right: 6px; font-size: 20px; font-weight: 900; font-style: italic; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, var(--text-2) 0%, var(--muted) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; transform: skewX(-6deg); }
+.lay.has-no { width: calc(176 * var(--u)); }
+.lay.has-no .pp { left: calc(38 * var(--u)); }
+.lay .no { z-index: 1; top: calc(52 * var(--u)); left: calc(6 * var(--u)); width: calc(48 * var(--u)); font-size: calc(68 * var(--u)); line-height: 1; font-weight: 900; font-style: italic; letter-spacing: -.03em; transform: none; text-align: left;
+  background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #fff; -webkit-text-fill-color: #fff;
+  -webkit-text-stroke: calc(1.5 * var(--u)) rgba(0,0,0,.28); paint-order: stroke fill; filter: drop-shadow(0 calc(3 * var(--u)) calc(3 * var(--u)) rgba(0,0,0,.35)); }
+.lay .no.n2 { font-size: calc(42 * var(--u)); top: calc(64 * var(--u)); left: calc(3 * var(--u)); width: calc(36 * var(--u)); letter-spacing: -.1em; }
+.lay.has-no .no, .lay.has-no .no.n2 { }
+/* คอลัมน์ที่เลือกกว้างขึ้นราว 5% และมีที่หายใจรอบตัวเลขที่ซูม */
+.score-table.board:not(.compare-t) th.winh { width: 52%; }
+.score-table.board:not(.compare-t) th.on, .score-table.board:not(.compare-t) td.num.on { padding-left: 8px; padding-right: 12px; }
