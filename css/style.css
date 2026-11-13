@@ -355,3 +355,20 @@ a { color: #1c5cab; }
 /* คอลัมน์ที่เลือกกว้างขึ้นราว 5% และมีที่หายใจรอบตัวเลขที่ซูม */
 .score-table.board:not(.compare-t) th.winh { width: 52%; }
 .score-table.board:not(.compare-t) th.on, .score-table.board:not(.compare-t) td.num.on { padding-left: 8px; padding-right: 12px; }
+
+/* มือถือ: การ์ดย่อ ชื่อพรรคอยู่ใต้การ์ด ตัวเลขซูมน้อยลง ไม่ให้เบียดกัน */
+@media (max-width: 720px) {
+  .score-table.board:not(.compare-t) .lay { --u: .56px; margin-right: 0; }
+  .score-table.board:not(.compare-t) .ident { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .score-table.board:not(.compare-t) .ident .who { margin-left: 2px; white-space: normal; overflow: visible; text-overflow: clip; font-size: 13px; line-height: 1.25; }
+  .score-table.board:not(.compare-t) .ident .who small { white-space: normal; overflow: visible; font-size: 11px; }
+  .score-table.board:not(.compare-t) th.winh { width: auto; }
+  .score-table.board:not(.compare-t) td.name { max-width: none; width: 1%; padding-right: 4px; }
+  .score-table.board:not(.compare-t) td.num { padding-left: 4px; padding-right: 6px; }
+  .score-table.board:not(.compare-t) td.num .seats { font-size: 14px; }
+  .score-table.board:not(.compare-t) td.num small { font-size: 10px; }
+  .score-table.board:not(.compare-t) td.num.on .seats, .score-table.board:not(.compare-t) td.num.on small { --z: 1.12; }
+  .score-table.board:not(.compare-t) th.on, .score-table.board:not(.compare-t) td.num.on { padding-left: 6px; padding-right: 8px; }
+  .ident-plain .who { white-space: normal; }
+  .no-plain { font-size: 16px; min-width: 1.8em; }
+}
