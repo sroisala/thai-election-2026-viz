@@ -1,7 +1,7 @@
 /* One map of constituency dots. Each election year is data/years/<year>.json. */
 (async function () {
   const HEX_R = 6;
-  const HEX_GAP = 0.4;
+  const HEX_GAP = 1.2;
   const BKK_PC = '10';
   let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP, SWITCHES;
   try {
@@ -109,14 +109,39 @@
 
   function placeDots(years, map) {
     const G = Math.sqrt(3) * HEX_R + HEX_GAP;
+    const yStep = G * Math.sqrt(3) / 2;
+    // Even rows, left to right then top to bottom. Not a hex blob that widens in the middle.
     const hexOffsets = n => {
+      if (n <= 1) return [[0, 0]];
+      const rows = Math.max(1, Math.round(Math.sqrt(n)));
+      const base = Math.floor(n / rows);
+      const extra = n % rows;
+      const pts = [];
+      for (let r = 0, i = 0; r < rows; r++) {
+        const count = base + (r < extra ? 1 : 0);
+        for (let c = 0; c < count; c++, i++) pts.push([(c + (r % 2) * 0.5) * G, r * yStep]);
+      }
+      const xs = pts.map(p => p[0]);
+      const ys = pts.map(p => p[1]);
+      const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+      const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+      return pts.map(([x, y]) => [x - cx, y - cy]);
+    };
+    // Bangkok only: a hex blob, still numbered left to right, top to bottom.
+    const hexHoneycomb = n => {
       const pts = [[0, 0]];
       for (let ring = 1; pts.length < n; ring++) {
-        let x = ring, y = 0;
+        let q = ring, s = 0;
         const dirs = [[-1, 1], [-1, 0], [0, -1], [1, -1], [1, 0], [0, 1]];
-        for (const [dx, dy] of dirs) for (let k = 0; k < ring; k++) { pts.push([x, y]); x += dx; y += dy; }
+        for (const [dq, ds] of dirs) for (let k = 0; k < ring && pts.length < n; k++) {
+          pts.push([q, s]);
+          q += dq;
+          s += ds;
+        }
       }
-      return pts.slice(0, n).map(([q, s]) => [G * (q + s / 2), G * (s * Math.sqrt(3) / 2)]);
+      return pts
+        .map(([q, s]) => [G * (q + s / 2), G * (s * Math.sqrt(3) / 2)])
+        .sort((a, b) => a[1] - b[1] || a[0] - b[0]);
     };
     const cen = Object.fromEntries(map.provinces.map(p => [p.pc, p]));
     const maxN = {};
@@ -125,7 +150,7 @@
       for (const d of year.districts) c[d.pc] = (c[d.pc] || 0) + 1;
       for (const [pc, n] of Object.entries(c)) maxN[pc] = Math.max(maxN[pc] || 0, n);
     }
-    const offsOf = Object.fromEntries(Object.entries(maxN).filter(([pc]) => cen[pc]).map(([pc, n]) => [pc, hexOffsets(n)]));
+    const offsOf = Object.fromEntries(Object.entries(maxN).filter(([pc]) => cen[pc]).map(([pc, n]) => [pc, (pc === BKK_PC ? hexHoneycomb : hexOffsets)(n)]));
     const bkkAt = [408, 590];
     map.bkk = bkkAt;
     const nodes = Object.entries(maxN).filter(([pc]) => cen[pc]).map(([pc, n]) => {
@@ -182,7 +207,7 @@
 
   const state = { limit: 10, anim: null,
     year: index.includes('2569') ? '2569' : YEARS[YEARS.length - 1].id,
-    score: 'total', selected: null, tab: 'scores', compare: false,
+    score: 'const', selected: null, tab: 'scores', compare: false,
     scoreQuery: '', sortKey: 'total', policyTopic: '', policyOpen: new Set([COMPARE[0].id]),
   };
   let byId = new Map();
@@ -284,8 +309,8 @@
       .attr('aria-checked', s => String(s[0] === state.score))
       .text(s => s[1])
       .on('click', (e, s) => {
-        // กดซ้ำที่ตัวเลือกเดิมเพื่อยกเลิก กลับไปดูคะแนนรวม
-        state.score = state.score === s[0] ? 'total' : s[0];
+        if (state.score === s[0]) return;
+        state.score = s[0];
         state.anim = 'score';
         hideTip();
         render();
@@ -321,12 +346,22 @@
   const mapRoot = mapSvg.append('g');
   mapRoot.append('g').selectAll('path').data(MAP.provinces).join('path')
     .attr('class', 'prov').attr('d', d => d.d);
-  const bkk = MAP.bkk;
+  const bkkPts = YEARS.flatMap(y => y.districts.filter(d => d.pc === BKK_PC && d.xy));
+  const bkkXs = bkkPts.map(d => d.xy[0]);
+  const bkkYs = bkkPts.map(d => d.xy[1]);
+  const bkkPad = HEX_R + 8;
+  const bkkLabel = 16;
+  const frame = {
+    x: Math.min(...bkkXs) - bkkPad,
+    y: Math.min(...bkkYs) - bkkPad - bkkLabel,
+    w: Math.max(...bkkXs) - Math.min(...bkkXs) + bkkPad * 2,
+    h: Math.max(...bkkYs) - Math.min(...bkkYs) + bkkPad * 2 + bkkLabel,
+  };
   mapRoot.append('rect').attr('class', 'bkk-frame')
-    .attr('x', bkk[0] - 46).attr('y', bkk[1] - 58)
-    .attr('width', 92).attr('height', 104).attr('rx', 10);
+    .attr('x', frame.x).attr('y', frame.y)
+    .attr('width', frame.w).attr('height', frame.h).attr('rx', 10);
   mapRoot.append('text').attr('class', 'bkk-label')
-    .attr('x', bkk[0]).attr('y', bkk[1] - 42)
+    .attr('x', frame.x + frame.w / 2).attr('y', frame.y + 12)
     .attr('text-anchor', 'middle').attr('font-size', 11).text('กรุงเทพฯ');
   const labelG = mapRoot.append('g').attr('class', 'prov-labels');
   const dotG = mapRoot.append('g');
@@ -436,28 +471,27 @@
     const caption = state.compare
       ? 'ครึ่งบน 2569 · ล่างซ้าย 2566 · ล่างขวา 2562'
       : year.singleBallot
-        ? 'บัตรใบเดียว — สีคือพรรคของผู้สมัครที่ได้คะแนนสูงสุด'
-        : state.score === 'const' ? 'สีคือพรรคที่ชนะ สส.เขต'
-          : state.score === 'list' ? 'สีคือพรรคที่คะแนนบัญชีรายชื่อสูงสุดในเขต'
-            : 'สีคือพรรคที่คะแนนเขตบวกบัญชีรายชื่อสูงสุด';
+        ? 'บัตรใบเดียว พรรคของผู้สมัครที่ได้คะแนนสูงสุดในแต่ละเขต'
+        : state.score === 'const' ? 'พรรคที่ชนะในแต่ละเขต'
+          : 'พรรคที่ได้คะแนนบัญชีรายชื่อสูงสุดในแต่ละเขต';
     L.append('span').attr('class', 'cap').text(caption);
     renderCompareKey();
     counts.slice(0, 6).forEach(([pi, n]) => {
       const it = L.append('span').attr('class', 'item');
       it.append('span').attr('class', 'sw').style('background', color(pi));
-      it.append('span').text(`${pname(pi)} ${n}`);
+      it.append('span').text(`${pname(pi)} ${n} เขต`);
     });
     const rest = d3.sum(counts.slice(6), d => d[1]);
     if (rest) {
       const it = L.append('span').attr('class', 'item');
       it.append('span').attr('class', 'sw').style('background', '#a8a6a0');
-      it.append('span').text(`อื่น ๆ ${rest}`);
+      it.append('span').text(`อื่น ๆ ${rest} เขต`);
     }
     const none = year.districts.length - d3.sum(counts, d => d[1]);
     if (none) {
       const it = L.append('span').attr('class', 'item');
       it.append('span').attr('class', 'sw').style('border', '1px dashed #b9b7b0');
-      it.append('span').text(`ไม่มีข้อมูล ${none}`);
+      it.append('span').text(`ไม่มีข้อมูล ${none} เขต`);
     }
   }
 

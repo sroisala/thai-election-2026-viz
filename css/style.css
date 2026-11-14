@@ -34,7 +34,7 @@ a { color: #1c5cab; }
 .stage { padding-top: 20px; padding-bottom: 8px; }
 .eyebrow { margin: 0 0 4px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
 
-.filters-inline { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-bottom: 16px; }
+.filters-inline { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-bottom: 16px; align-items: center; }
 .filter-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .filter-label { font-size: 13px; color: var(--text-2); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -47,6 +47,27 @@ a { color: #1c5cab; }
 .chip[aria-checked="true"] { background: var(--text); color: #fff; border-color: var(--text); }
 .chip:disabled { opacity: .4; cursor: not-allowed; }
 .chip:disabled:not([aria-checked="true"]):hover { border-color: var(--line-2); }
+.score-filter .filter-label { font-size: 14px; font-weight: 700; color: var(--text); }
+.chips.segment {
+  flex-wrap: nowrap; gap: 2px; padding: 3px;
+  background: var(--bg); border: 1px solid var(--line-2); border-radius: 999px;
+}
+.chips.segment .chip {
+  border: 0; background: transparent; font-size: 14px; font-weight: 600;
+  padding: 8px 14px;
+}
+.chips.segment .chip:hover { background: rgba(20, 20, 18, .06); }
+.chips.segment .chip[aria-checked="true"] { background: var(--text); color: #fff; }
+.chips.segment .chip[aria-checked="true"]:hover { background: var(--text); }
+.year-filter .filter-label { color: var(--muted); }
+.year-filter .chip {
+  font-size: 12px; padding: 5px 10px; color: var(--text-2);
+  background: transparent; border-color: transparent;
+}
+.year-filter .chip:hover { background: var(--bg); border-color: var(--line); }
+.year-filter .chip[aria-checked="true"] {
+  background: var(--bg); color: var(--text); border-color: var(--line-2); font-weight: 600;
+}
 .switch {
   display: inline-flex; align-items: center; gap: 8px;
   font: inherit; font-size: 13px; color: var(--text);

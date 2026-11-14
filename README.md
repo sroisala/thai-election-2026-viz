@@ -13,11 +13,10 @@ The map draws one dot per constituency, packed inside its province. Changing the
 | Filter | Map color | National score table |
 |---|---|---|
 | ปี 2562 / 2566 / 2569 | That year's districts | That year's seats and vote shares |
-| คะแนน: เขต | Constituency winner | Sorted by constituency seats |
-| คะแนน: บัญชีรายชื่อ | Party ahead on the party-list ballot in that district | Sorted by party-list seats |
-| คะแนน: รวม | Party ahead on constituency votes plus party-list votes | Sorted by total seats, with the 251-seat majority line |
+| คะแนน: เขต | Constituency winner | Constituency column highlighted |
+| คะแนน: บัญชีรายชื่อ | Party ahead on the party-list ballot in that district | Party-list column highlighted |
 
-2562 used one ballot, so the three color modes are the same map. Party-list seats that year were allocated from the national total, and the table still changes.
+The score filter is only these two. The national table still has a total-seats column, and its own sort. 2562 used one ballot, so both color modes are the same map. Party-list seats that year were allocated from the national total, and the table still changes.
 
 With no district selected, the right side is the national score table. Click a dot to open that district. Hover only shows a tooltip. The district panel has three tabs:
 

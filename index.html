@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261114h">
+  <link rel="stylesheet" href="css/style.css?v=20261114l">
 </head>
 <body>
   <header class="site-header">
@@ -21,13 +21,13 @@
   <main class="wrap stage">
     <section id="sec-map">
       <div class="filters-inline" aria-label="ตัวกรอง">
-        <div class="filter-group">
+        <div class="filter-group score-filter">
+          <span class="filter-label" id="scoreLabel">คะแนน</span>
+          <div class="chips segment" id="scoreChips" role="radiogroup" aria-labelledby="scoreLabel"></div>
+        </div>
+        <div class="filter-group year-filter">
           <span class="filter-label" id="yearLabel">ปี</span>
           <div class="chips" id="yearChips" role="radiogroup" aria-labelledby="yearLabel"></div>
-        </div>
-        <div class="filter-group">
-          <span class="filter-label" id="scoreLabel">คะแนน</span>
-          <div class="chips" id="scoreChips" role="radiogroup" aria-labelledby="scoreLabel"></div>
         </div>
         <div class="filter-group">
           <button type="button" id="compareToggle" class="switch" role="switch" aria-checked="false">
@@ -70,6 +70,6 @@
 
   <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-  <script src="js/main.js?v=20261114h"></script>
+  <script src="js/main.js?v=20261114n"></script>
 </body>
 </html>
