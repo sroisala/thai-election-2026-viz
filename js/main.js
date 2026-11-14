@@ -3,15 +3,17 @@
   const HEX_R = 6;
   const HEX_GAP = 0.4;
   const BKK_PC = '10';
-  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META;
+  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP;
   try {
-    [index, provinces, MAP, POLICIES, PROVINCE_STATS, META] = await Promise.all([
+    [index, provinces, MAP, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP] = await Promise.all([
       d3.json('data/years/index.json'),
       d3.json('data/provinces.json'),
       d3.json('data/map.json'),
       d3.json('data/panel/policies.json').catch(() => ({})),
       d3.json('data/panel/province-stats.json').catch(() => ({})),
       d3.json('data/panel/party-meta.json').catch(() => ({})),
+      d3.json('data/panel/province_min_wage.json').catch(() => ({})),
+      d3.json(encodeURI('data/panel/unemployment by province 2560-2566.json')).catch(() => ({ provinces: [] })),
     ]);
     const files = await Promise.all(index.map(id => d3.json(`data/years/${id}.json`)));
     YEARS = files.map(raw => normalizeYear(raw, provinces));
@@ -489,11 +491,48 @@
     const bag = (POLICIES && POLICIES[current().id]) || {};
     return bag[partyName] || [];
   }
-  function provinceSeries(th) {
-    return Object.keys(PROVINCE_STATS || {})
-      .filter(y => PROVINCE_STATS[y] && PROVINCE_STATS[y][th])
-      .sort()
-      .map(y => ({ year: y, ...PROVINCE_STATS[y][th] }));
+  // แท็บเศรษฐกิจ: กราฟเส้นเรียงลง แกน พ.ศ. 2558–2569 ปักปีเลือกตั้ง 2562, 2566, 2569
+  const ECON_FROM = 2558;
+  const ECON_TO = 2569;
+  const ELECTION_YEARS = [2562, 2566, 2569];
+  const UNEMP_BY_NAME = new Map(((UNEMP && UNEMP.provinces) || []).map(p => [p.province_name_th, p.unemployment_rate || {}]));
+  const ECON_READ = 'เส้นประคือปีเลือกตั้ง 2562, 2566 และ 2569 จุดขาวคือปีเลือกตั้งที่มีตัวเลขแล้ว ปี 2569 ยังไม่มีตัวเลข แกนนอนเป็น พ.ศ. 2558–2569';
+  const ECON_SERIES = [
+    { key: 'gpp', label: 'GPP', unit: 'ล้านบาท', color: '#3a76b0', about: 'GPP จาก สศช. ราคาประจำปี', tip: v => `${fmtInt(Math.round(v))} ล้านบาท` },
+    { key: 'tourists', label: 'นักท่องเที่ยว', unit: 'คน-ครั้ง', color: '#e0943a', about: 'นักท่องเที่ยวคือผู้เยี่ยมเยือนคนไทย (คน-ครั้ง) จากกระทรวงการท่องเที่ยวและกีฬา', tip: v => `${fmtInt(Math.round(v))} คน-ครั้ง` },
+    { key: 'wage', label: 'ค่าแรงขั้นต่ำ', unit: 'บาท/วัน', color: '#2c8d82', about: 'ค่าแรงขั้นต่ำเป็นอัตรา ณ สิ้นปี จากกระทรวงแรงงาน', tip: v => `${fmtInt(Math.round(v))} บาท/วัน` },
+    { key: 'unemp', label: 'อัตราว่างงาน', unit: '%', color: '#6d509e', about: 'อัตราว่างงานเป็นร้อยละของกำลังแรงงาน จาก สศช. / สำนักงานสถิติแห่งชาติ (มีถึงปี 2566)', tip: v => `${d3.format('.1f')(v)}%` },
+  ];
+  function econValue(th, key, year) {
+    const y = String(year);
+    let v = null;
+    if (key === 'gpp' || key === 'tourists') v = ((PROVINCE_STATS || {})[y] || {})[th]?.[key];
+    else if (key === 'wage') v = ((MIN_WAGE || {})[y] || {})[th]?.minWage;
+    else v = (UNEMP_BY_NAME.get(th) || {})[y];
+    if (v == null || v === '') return null;
+    const n = +v;
+    return Number.isNaN(n) ? null : n;
+  }
+  function econPoints(th) {
+    const years = d3.range(ECON_FROM, ECON_TO + 1);
+    return ECON_SERIES.map(spec => {
+      const pts = years.map(year => ({ year, value: econValue(th, spec.key, year) }));
+      const present = pts.filter(p => p.value != null);
+      return {
+        ...spec, pts, present,
+        from: present.length ? present[0].year : null,
+        to: present.length ? present[present.length - 1].year : null,
+      };
+    });
+  }
+  function econTick(key, v) {
+    if (key === 'unemp') return `${d3.format('.1f')(v)}%`;
+    if (Math.abs(v) >= 1e6) {
+      const m = v / 1e6;
+      const n = Math.abs(m) >= 10 ? d3.format('.0f')(m) : d3.format('.1f')(m);
+      return `${n.replace(/\.0$/, '')}M`;
+    }
+    return d3.format(',.0f')(v);
   }
   // ---- รูปหัวหน้าพรรค / นายกฯ / โลโก้พรรค (data/panel/party-meta.json) ----
   const META_PM = (META && META.pm) || {};
@@ -623,24 +662,164 @@
     return `<div class="chips topic-chips">${chips}</div><div id="panelBody">${policyListHTML(partyName)}</div>`;
   }
   function gppHTML(th) {
-    const series = provinceSeries(th);
-    if (!series.length) {
-      return `<p class="placeholder">ยังไม่มีตัวเลข GPP และนักท่องเที่ยวของ${esc(th)}</p>`;
+    const series = econPoints(th);
+    if (!series.some(s => s.present.length)) {
+      return `<p class="placeholder">ยังไม่มีตัวเลขเศรษฐกิจของ${esc(th)}</p>`;
     }
-    const yearId = current().id;
-    const focus = series.find(r => r.year === yearId) || series[series.length - 1];
-    let html = `<p class="prov-line">${focus.year === yearId ? `ปี ${focus.year}` : `ไม่มีของปี ${yearId} แสดงปี ${focus.year}`} · ระดับจังหวัด</p>
-      <div class="stats">
-        <div class="stat"><div class="k">GPP</div><div class="v">${focus.gpp == null ? '—' : fmtInt(focus.gpp)}</div><div class="k">${esc(focus.gppUnit || 'ล้านบาท')}</div></div>
-        <div class="stat"><div class="k">นักท่องเที่ยว</div><div class="v">${focus.tourists == null ? '—' : fmtInt(focus.tourists)}</div><div class="k">คน</div></div>
-      </div>`;
-    if (series.length > 1) {
-      html += `<table class="score-table"><thead><tr><th>ปี</th><th>GPP</th><th>นักท่องเที่ยว</th></tr></thead><tbody>
-        ${series.map(r => `<tr class="${r.year === focus.year ? 'on' : ''}"><td class="name">${esc(r.year)}</td><td>${r.gpp == null ? '—' : fmtInt(r.gpp)}</td><td>${r.tourists == null ? '—' : fmtInt(r.tourists)}</td></tr>`).join('')}
-      </tbody></table>`;
+    const cards = series.map(s => {
+      const range = s.present.length ? `${s.from}–${s.to}` : 'ไม่มีข้อมูล';
+      return `<figure class="econ-card" data-econ="${s.key}">
+        <figcaption class="econ-head"><i class="mark" style="background:${s.color}"></i><b>${esc(s.label)}</b><span>${esc(s.unit)} · ${range}</span></figcaption>
+        <div class="econ-plot"></div>
+      </figure>`;
+    }).join('');
+    return `<div class="econ-stack" data-prov="${esc(th)}">${cards}</div>`;
+  }
+  function drawEconCharts() {
+    const stack = document.querySelector('.econ-stack');
+    if (!stack) return;
+    if (document.fonts && document.fonts.status !== 'loaded') document.fonts.ready.then(drawEconCharts);
+    const series = econPoints(stack.dataset.prov);
+    stack.querySelectorAll('.econ-card').forEach(card => {
+      const spec = series.find(s => s.key === card.dataset.econ);
+      const host = card.querySelector('.econ-plot');
+      host.replaceChildren();
+      if (!spec) return;
+      drawEconChart(host, spec);
+      const head = card.querySelector('.econ-head');
+      const tipHtml = `<div class="t">${esc(spec.label)}</div><div>${esc(ECON_READ)}</div><div>${esc(spec.about)}</div>`;
+      head.onmouseenter = head.onmousemove = ev => showTip(tipHtml, ev);
+      head.onmouseleave = hideTip;
+    });
+  }
+  function drawEconChart(host, spec) {
+    const width = Math.max(260, host.clientWidth || 320);
+    const height = 176;
+    const plotTop = 34;
+    const plotBottom = height - 22;
+    const maxV = d3.max(spec.present, d => d.value) || 1;
+    const y = d3.scaleLinear().domain([0, maxV]).nice().range([plotBottom, plotTop]);
+    if (y.domain()[0] < 0) y.domain([0, y.domain()[1]]);
+    const ticks = y.ticks(5).filter(t => t >= -1e-6);
+    const svg = d3.select(host).append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('role', 'img')
+      .attr('aria-label', spec.present.length ? `${spec.label} ${spec.from} ถึง ${spec.to}` : `${spec.label} ไม่มีข้อมูล`)
+      .attr('font-family', '"IBM Plex Sans Thai", sans-serif');
+    const probe = svg.append('text').attr('font-size', 11).attr('visibility', 'hidden');
+    let labelW = 24;
+    ticks.forEach(t => {
+      probe.text(econTick(spec.key, t));
+      labelW = Math.max(labelW, probe.node().getBBox().width);
+    });
+    probe.remove();
+    const marginLeft = Math.ceil(labelW) + 10;
+    const marginRight = 18;
+    const x = d3.scaleLinear().domain([ECON_FROM, ECON_TO]).range([marginLeft, width - marginRight]);
+    svg.append('g').attr('fill', '#9b998f').attr('font-size', 11).attr('text-anchor', 'end')
+      .selectAll('text').data(ticks).join('text')
+      .attr('x', marginLeft - 8)
+      .attr('y', t => y(t) + 4)
+      .text(t => econTick(spec.key, t));
+    const rules = svg.append('g').attr('stroke', '#c5c3bb').attr('stroke-width', 1.15).attr('stroke-dasharray', '2.4 3');
+    ELECTION_YEARS.forEach(year => {
+      rules.append('line').attr('x1', x(year)).attr('x2', x(year)).attr('y1', 2).attr('y2', plotBottom);
+    });
+    if (spec.present.length) {
+      svg.append('path')
+        .datum(spec.pts)
+        .attr('fill', 'none')
+        .attr('stroke', spec.color)
+        .attr('stroke-width', 2.25)
+        .attr('stroke-linejoin', 'round')
+        .attr('stroke-linecap', 'round')
+        .attr('d', d3.line().defined(d => d.value != null).x(d => x(d.year)).y(d => y(d.value)));
+      svg.append('g').selectAll('circle').data(spec.present).join('circle')
+        .attr('cx', d => x(d.year))
+        .attr('cy', d => y(d.value))
+        .attr('r', d => ELECTION_YEARS.includes(d.year) ? 5.2 : 3.15)
+        .attr('fill', d => ELECTION_YEARS.includes(d.year) ? '#fff' : spec.color)
+        .attr('stroke', spec.color)
+        .attr('stroke-width', d => ELECTION_YEARS.includes(d.year) ? 2.25 : 0);
     }
-    if (focus.note) html += `<p class="note">${esc(focus.note)}</p>`;
-    return html;
+    svg.append('text')
+      .attr('x', x(ECON_TO) - 5)
+      .attr('y', plotBottom - 7)
+      .attr('text-anchor', 'end')
+      .attr('fill', '#a9a79f')
+      .attr('font-size', 10.5)
+      .text('ยังไม่มีข้อมูล');
+    const yearProbe = svg.append('text').attr('font-size', 10).attr('visibility', 'hidden').text(String(ECON_TO));
+    const yearLabW = yearProbe.node().getBBox().width;
+    yearProbe.remove();
+    const chosenYears = [];
+    const yearFits = year => chosenYears.every(c => Math.abs(x(year) - x(c)) >= yearLabW + 6);
+    [ECON_FROM, ...ELECTION_YEARS].forEach(year => { if (yearFits(year)) chosenYears.push(year); });
+    d3.range(ECON_FROM, ECON_TO + 1).forEach(year => { if (!chosenYears.includes(year) && yearFits(year)) chosenYears.push(year); });
+    chosenYears.sort((a, b) => a - b);
+    svg.append('g').attr('fill', '#9b998f').attr('font-size', 10).attr('text-anchor', 'middle')
+      .selectAll('text').data(chosenYears).join('text')
+      .attr('x', year => x(year))
+      .attr('y', height - 6)
+      .text(year => year);
+    drawElectionPills(svg, x, width);
+    const focus = svg.append('circle')
+      .attr('r', 6.5).attr('fill', 'none').attr('stroke', spec.color).attr('stroke-width', 2)
+      .style('display', 'none');
+    svg.append('rect').attr('fill', 'transparent').attr('width', width).attr('height', height)
+      .on('mousemove', ev => {
+        const [mx] = d3.pointer(ev);
+        const year = Math.round(x.invert(mx));
+        const pt = spec.pts.find(p => p.year === year);
+        if (!pt || mx < marginLeft - 8 || mx > width - marginRight + 8) {
+          hideTip();
+          focus.style('display', 'none');
+          return;
+        }
+        const head = ELECTION_YEARS.includes(year) ? `เลือกตั้ง ${year}` : String(year);
+        const val = pt.value == null ? 'ยังไม่มีข้อมูล' : spec.tip(pt.value);
+        showTip(`<div class="t">${esc(spec.label)}</div><div class="r"><span>${head}</span><span>${esc(val)}</span></div>`, ev);
+        if (pt.value == null) { focus.style('display', 'none'); return; }
+        focus.style('display', null).attr('cx', x(year)).attr('cy', y(pt.value));
+      })
+      .on('mouseleave', () => { hideTip(); focus.style('display', 'none'); });
+  }
+  function drawElectionPills(svg, x, width) {
+    const place = short => {
+      const g = svg.append('g').attr('class', 'econ-pills');
+      const nodes = ELECTION_YEARS.map(year => {
+        const t = g.append('text')
+          .attr('x', x(year)).attr('y', 15)
+          .attr('text-anchor', 'middle')
+          .attr('fill', '#fff')
+          .attr('font-size', short ? 11 : 10.5)
+          .attr('font-weight', 600)
+          .text(short ? String(year) : `เลือกตั้ง ${year}`);
+        return { year, t, b: t.node().getBBox() };
+      });
+      nodes.forEach(n => {
+        const pad = 7;
+        let shift = 0;
+        if (n.b.x - pad < 1) shift = 1 - (n.b.x - pad);
+        if (n.b.x + n.b.width + pad + shift > width - 1) shift = width - 1 - (n.b.x + n.b.width + pad);
+        if (shift) n.t.attr('x', x(n.year) + shift);
+        n.b = n.t.node().getBBox();
+        n.pad = pad;
+      });
+      const boxes = nodes.map(n => [n.b.x - n.pad, n.b.x + n.b.width + n.pad]);
+      const overlap = boxes.some((b, i) => boxes.slice(i + 1).some(c => b[0] < c[1] + 3 && c[0] < b[1] + 3));
+      if (overlap && !short) { g.remove(); place(true); return; }
+      nodes.forEach(n => {
+        g.insert('rect', () => n.t.node())
+          .attr('x', n.b.x - n.pad)
+          .attr('y', n.b.y - 2.5)
+          .attr('width', n.b.width + n.pad * 2)
+          .attr('height', n.b.height + 5)
+          .attr('rx', (n.b.height + 5) / 2)
+          .attr('fill', '#1c1c1c');
+      });
+    };
+    place(false);
   }
   function compareDistrictRowHTML(d) {
     const showName = state.score === 'const';
@@ -739,7 +918,7 @@
     const prov = provOf(d.pc);
     const L = leaderOf(d);
     const partyName = L ? pname(L.pi) : '';
-    const tabs = [['scores', 'ตารางคะแนน'], ['policy', 'นโยบาย'], ['gpp', 'GPP และนักท่องเที่ยว']];
+    const tabs = [['scores', 'ตารางคะแนน'], ['policy', 'นโยบาย'], ['gpp', 'เศรษฐกิจ']];
     const showName = state.score === 'const' || year.singleBallot;
     let body = state.tab === 'policy'
       ? (state.compare ? `<div id="panelBody">${comparePolicyInner(d)}</div>` : (L ? policyHTML(partyName) : '<p class="placeholder">ไม่มีผู้ชนะในมุมมองนี้</p>'))
@@ -793,7 +972,12 @@
     document.querySelectorAll('[data-topic]').forEach(btn => {
       btn.onclick = () => { state.policyTopic = btn.dataset.topic; renderDetail(); };
     });
+    drawEconCharts();
   }
+  window.addEventListener('resize', () => {
+    clearTimeout(drawEconCharts._t);
+    drawEconCharts._t = setTimeout(drawEconCharts, 120);
+  });
 
   function numFill(d) {
     if (!state.compare) {
