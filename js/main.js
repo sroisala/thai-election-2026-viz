@@ -3,9 +3,9 @@
   const HEX_R = 6;
   const HEX_GAP = 0.4;
   const BKK_PC = '10';
-  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP;
+  let index, provinces, MAP, YEARS, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP, SWITCHES;
   try {
-    [index, provinces, MAP, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP] = await Promise.all([
+    [index, provinces, MAP, POLICIES, PROVINCE_STATS, META, MIN_WAGE, UNEMP, SWITCHES] = await Promise.all([
       d3.json('data/years/index.json'),
       d3.json('data/provinces.json'),
       d3.json('data/map.json'),
@@ -14,6 +14,7 @@
       d3.json('data/panel/party-meta.json').catch(() => ({})),
       d3.json('data/panel/province_min_wage.json').catch(() => ({})),
       d3.json(encodeURI('data/panel/unemployment by province 2560-2566.json')).catch(() => ({ provinces: [] })),
+      d3.json('data/panel/mp_party_switch_2562_2569.json').catch(() => ({ mps: [] })),
     ]);
     const files = await Promise.all(index.map(id => d3.json(`data/years/${id}.json`)));
     YEARS = files.map(raw => normalizeYear(raw, provinces));
@@ -228,12 +229,12 @@
     tip.style.top = Math.max(8, y) + 'px';
   }
   const hideTip = () => { tip.hidden = true; };
-  function sliceLeader(districtId, yearId) {
+  function sliceLeader(districtId, yearId, score = state.score) {
     const year = yearById.get(yearId);
     if (!year) return null;
     const other = year.byId.get(districtId);
     if (!other) return { year, missing: true };
-    const L = leaderOf(other, state.score, year);
+    const L = leaderOf(other, score, year);
     if (!L) return { year, empty: true };
     const party = year.parties[L.pi] || { name: '—', color: '#a8a6a0' };
     return { year, L, party };
@@ -266,9 +267,11 @@
     d3.select('#yearChips').selectAll('button').data(YEARS).join('button')
       .attr('class', 'chip').attr('type', 'button').attr('role', 'radio')
       .attr('aria-checked', y => String(y.id === state.year))
+      .property('disabled', state.compare)
+      .attr('title', state.compare ? 'ปิดเทียบ 3 ปีก่อนเพื่อเลือกปี' : null)
       .text(y => y.id)
       .on('click', (e, y) => {
-        if (state.year === y.id) return;
+        if (state.compare || state.year === y.id) return;
         state.year = y.id;
         state.anim = 'year';
         state.hover = null;
@@ -502,7 +505,7 @@
   const ECON_TO = 2569;
   const ELECTION_YEARS = [2562, 2566, 2569];
   const UNEMP_BY_NAME = new Map(((UNEMP && UNEMP.provinces) || []).map(p => [p.province_name_th, p.unemployment_rate || {}]));
-  const ECON_READ = 'เส้นประคือปีเลือกตั้ง 2562, 2566 และ 2569 จุดขาวคือปีเลือกตั้งที่มีตัวเลขแล้ว ปี 2569 ยังไม่มีตัวเลข แกนนอนเป็น พ.ศ. 2558–2569';
+  const ECON_READ = 'เส้นสีเทาคือค่าเฉลี่ยของทุกจังหวัด เส้นประคือปีเลือกตั้ง 2562, 2566 และ 2569 จุดขาวคือปีเลือกตั้งที่มีตัวเลขแล้ว ปี 2569 ยังไม่มีตัวเลข แกนนอนเป็น พ.ศ. 2558–2569';
   const ECON_SERIES = [
     { key: 'gpp', label: 'GPP', unit: 'ล้านบาท', color: '#3a76b0', about: 'GPP จาก สศช. ราคาประจำปี', tip: v => `${fmtInt(Math.round(v))} ล้านบาท` },
     { key: 'tourists', label: 'นักท่องเที่ยว', unit: 'คน-ครั้ง', color: '#e0943a', about: 'นักท่องเที่ยวคือผู้เยี่ยมเยือนคนไทย (คน-ครั้ง) จากกระทรวงการท่องเที่ยวและกีฬา', tip: v => `${fmtInt(Math.round(v))} คน-ครั้ง` },
@@ -519,19 +522,32 @@
     const n = +v;
     return Number.isNaN(n) ? null : n;
   }
+  // Baseline: mean of every province that has a value for that year.
+  const ECON_PROVINCES = Object.values(provinces || {}).map(p => p.th).filter(Boolean);
+  const econAvgCache = new Map();
+  function econAverage(key) {
+    if (!econAvgCache.has(key)) {
+      econAvgCache.set(key, d3.range(ECON_FROM, ECON_TO + 1).map(year => {
+        const vals = ECON_PROVINCES.map(th => econValue(th, key, year)).filter(v => v != null);
+        return { year, value: vals.length ? d3.mean(vals) : null, n: vals.length };
+      }));
+    }
+    return econAvgCache.get(key);
+  }
   function econPoints(th) {
     const years = d3.range(ECON_FROM, ECON_TO + 1);
     return ECON_SERIES.map(spec => {
       const pts = years.map(year => ({ year, value: econValue(th, spec.key, year) }));
       const present = pts.filter(p => p.value != null);
       return {
-        ...spec, pts, present,
+        ...spec, pts, present, avg: econAverage(spec.key),
         from: present.length ? present[0].year : null,
         to: present.length ? present[present.length - 1].year : null,
       };
     });
   }
   function econTick(key, v) {
+    if (Math.abs(v) < 1e-9) return '0';
     if (key === 'unemp') return `${d3.format('.1f')(v)}%`;
     if (Math.abs(v) >= 1e6) {
       const m = v / 1e6;
@@ -544,6 +560,12 @@
   const META_PM = (META && META.pm) || {};
   const META_LEADERS = (META && META.leaders) || {};
   const META_LOGOS = (META && META.logos) || {};
+  // District panel: party logo in a small circle, falling back to the colour dot when there is no logo file.
+  function partyMark(name, col, cls = '') {
+    const src = META_LOGOS[name];
+    if (!src) return `<span class="sw${cls ? ' ' + cls : ''}" style="background:${col}"></span>`;
+    return `<span class="sw plogo${cls ? ' ' + cls : ''}" style="--c:${esc(col)}" title="${esc(name)}"><img src="${esc(src)}" alt="" loading="lazy" onerror="this.parentNode.classList.remove('plogo');this.parentNode.style.background=this.parentNode.style.getPropertyValue('--c');this.remove()"></span>`;
+  }
   // ตัวอักษรสำรองเมื่อไม่มีไฟล์รูป: พยัญชนะตัวแรกหลังคำนำหน้า
   const initialOf = s => {
     const t = String(s || '').replace(/^(พลเอก|พล\.อ\.|พล\.ต\.ท\.|พลตำรวจเอก|พลตำรวจโท|นางสาว|นาย|นาง|คุณหญิง|ร\.อ\.|ดร\.|ศ\.)\s*/, '');
@@ -641,7 +663,7 @@
     const rows = districtRows(d);
     return rows.map((r, i) => `<tr>
       <td class="rank">${i + 1}</td>
-      <td class="name"><span class="sw" style="background:${r.color}"></span>${esc(r.party)}</td>
+      <td class="name">${partyMark(r.party, r.color)}${esc(r.party)}</td>
       ${showName ? `<td class="cand">${esc(r.name) || '—'}</td>` : ''}
       <td>${fmtInt(r.votes)}</td><td>${fmtPct(r.share)}</td>
     </tr>`).join('') || '<tr><td colspan="5">ไม่มีผลคะแนนในมุมมองนี้</td></tr>';
@@ -675,7 +697,11 @@
     const cards = series.map(s => {
       const range = s.present.length ? `${s.from}–${s.to}` : 'ไม่มีข้อมูล';
       return `<figure class="econ-card" data-econ="${s.key}">
-        <figcaption class="econ-head"><i class="mark" style="background:${s.color}"></i><b>${esc(s.label)}</b><span>${esc(s.unit)} · ${range}</span></figcaption>
+        <figcaption class="econ-head"><b>${esc(s.label)}</b><span>${esc(s.unit)} · ${range}</span></figcaption>
+        <div class="econ-key">
+          <span><i class="mark" style="background:${s.color}"></i>${esc(th)}</span>
+          <span class="econ-avg"><i class="mark"></i>เฉลี่ยทุกจังหวัด</span>
+        </div>
         <div class="econ-plot"></div>
       </figure>`;
     }).join('');
@@ -703,7 +729,7 @@
     const height = 176;
     const plotTop = 34;
     const plotBottom = height - 22;
-    const maxV = d3.max(spec.present, d => d.value) || 1;
+    const maxV = d3.max([...spec.present, ...spec.avg.filter(d => d.value != null)], d => d.value) || 1;
     const y = d3.scaleLinear().domain([0, maxV]).nice().range([plotBottom, plotTop]);
     if (y.domain()[0] < 0) y.domain([0, y.domain()[1]]);
     const ticks = y.ticks(5).filter(t => t >= -1e-6);
@@ -721,7 +747,9 @@
     probe.remove();
     const marginLeft = Math.ceil(labelW) + 10;
     const marginRight = 18;
-    const x = d3.scaleLinear().domain([ECON_FROM, ECON_TO]).range([marginLeft, width - marginRight]);
+    // X axis starts at the first year with data (e.g. unemployment from 2560) so every line begins at the left edge.
+    const xFrom = spec.from != null ? Math.max(ECON_FROM, Math.min(spec.from, ECON_TO - 1)) : ECON_FROM;
+    const x = d3.scaleLinear().domain([xFrom, ECON_TO]).range([marginLeft, width - marginRight]);
     svg.append('g').attr('fill', '#9b998f').attr('font-size', 11).attr('text-anchor', 'end')
       .selectAll('text').data(ticks).join('text')
       .attr('x', marginLeft - 8)
@@ -731,6 +759,14 @@
     ELECTION_YEARS.forEach(year => {
       rules.append('line').attr('x1', x(year)).attr('x2', x(year)).attr('y1', 2).attr('y2', plotBottom);
     });
+    const line = d3.line().defined(d => d.value != null).x(d => x(d.year)).y(d => y(d.value));
+    const avgPts = spec.avg.filter(d => d.value != null);
+    if (avgPts.length) {
+      svg.append('path').datum(spec.avg)
+        .attr('fill', 'none').attr('stroke', '#b3b1aa').attr('stroke-width', 1.75)
+        .attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round')
+        .attr('d', line);
+    }
     if (spec.present.length) {
       svg.append('path')
         .datum(spec.pts)
@@ -760,8 +796,8 @@
     yearProbe.remove();
     const chosenYears = [];
     const yearFits = year => chosenYears.every(c => Math.abs(x(year) - x(c)) >= yearLabW + 6);
-    [ECON_FROM, ...ELECTION_YEARS].forEach(year => { if (yearFits(year)) chosenYears.push(year); });
-    d3.range(ECON_FROM, ECON_TO + 1).forEach(year => { if (!chosenYears.includes(year) && yearFits(year)) chosenYears.push(year); });
+    [xFrom, ...ELECTION_YEARS].forEach(year => { if (yearFits(year)) chosenYears.push(year); });
+    d3.range(xFrom, ECON_TO + 1).forEach(year => { if (!chosenYears.includes(year) && yearFits(year)) chosenYears.push(year); });
     chosenYears.sort((a, b) => a - b);
     svg.append('g').attr('fill', '#9b998f').attr('font-size', 10).attr('text-anchor', 'middle')
       .selectAll('text').data(chosenYears).join('text')
@@ -784,7 +820,9 @@
         }
         const head = ELECTION_YEARS.includes(year) ? `เลือกตั้ง ${year}` : String(year);
         const val = pt.value == null ? 'ยังไม่มีข้อมูล' : spec.tip(pt.value);
-        showTip(`<div class="t">${esc(spec.label)}</div><div class="r"><span>${head}</span><span>${esc(val)}</span></div>`, ev);
+        const avg = spec.avg.find(p => p.year === year);
+        const avgRow = avg && avg.value != null ? `<div class="r muted"><span>เฉลี่ยทุกจังหวัด</span><span>${esc(spec.tip(avg.value))}</span></div>` : '';
+        showTip(`<div class="t">${esc(spec.label)}</div><div class="r"><span>${head}</span><span>${esc(val)}</span></div>${avgRow}`, ev);
         if (pt.value == null) { focus.style('display', 'none'); return; }
         focus.style('display', null).attr('cx', x(year)).attr('cy', y(pt.value));
       })
@@ -827,33 +865,75 @@
     };
     place(false);
   }
-  function compareDistrictRowHTML(d) {
-    const showName = state.score === 'const';
-    const span = showName ? 4 : 3;
-    return COMPARE.map(s => {
-      const hit = sliceLeader(d.id, s.id);
-      if (!hit || hit.missing || hit.empty) {
-        return `<tr><td class="name">${s.id}</td><td colspan="${span}">${hit && hit.empty ? 'ไม่มีผล' : 'ไม่มีเขตนี้'}</td></tr>`;
-      }
-      const share = hit.L.good ? fmtPct(hit.L.v / hit.L.good) : '—';
-      return `<tr class="${s.id === state.year ? 'on' : ''}">
-        <td class="name">${s.id}</td>
-        <td class="name"><span class="sw" style="background:${hit.party.color}"></span>${esc(hit.party.name)}</td>
-        ${showName ? `<td class="cand">${esc(hit.L.name) || '—'}</td>` : ''}
-        <td>${fmtInt(hit.L.v)}</td><td>${share}</td>
-      </tr>`;
-    }).join('');
+
+  // District + compare: one column per election year (oldest first), like the PM table.
+  // Party switches of district MPs (data covers the 2566 cohort, switches 2562–2569).
+  const nameParts = n => String(n || '').trim().split(/\s+/);
+  const surname = n => nameParts(n).pop();
+  const SWITCH_BY_SEAT = new Map();
+  const SWITCH_BY_NAME = new Map();
+  for (const mp of (SWITCHES && SWITCHES.mps) || []) {
+    const k = surname(mp.name);
+    if (!SWITCH_BY_NAME.has(k)) SWITCH_BY_NAME.set(k, []);
+    SWITCH_BY_NAME.get(k).push(mp);
+    for (const [y, e] of Object.entries(mp.elections || {})) {
+      if (e && e.seat === 'district' && e.province) SWITCH_BY_SEAT.set(`${y}|${e.province}|${e.district}`, mp);
+    }
   }
+  const PREV_ELECTION = { 2566: 2562, 2569: 2566 };
+  // Switches into the winning party since the previous election, e.g. "ย้ายจากก้าวไกล (2568)".
+  function switchRemark(yearId, prov, n, name, party) {
+    const prev = PREV_ELECTION[yearId];
+    if (!prev) return '';
+    // Seat records can point to a losing candidate, so the surname must match the winner (titles/spellings vary).
+    // Fallback: same surname and the winner's name (which carries titles like นาย/พลตำรวจตรี) ends with the MP's first name.
+    let mp = SWITCH_BY_SEAT.get(`${yearId}|${prov}|${n}`);
+    if (mp && surname(mp.name) !== surname(name)) mp = null;
+    if (!mp) {
+      const first = nameParts(name).slice(0, -1).join('');
+      mp = (SWITCH_BY_NAME.get(surname(name)) || []).find(m => first.endsWith(nameParts(m.name).slice(0, -1).join('')));
+    }
+    if (!mp) return '';
+    const moves = (mp.switches || []).filter(sw => sw.to_year > prev && sw.to_year <= +yearId && sw.from && sw.from !== party);
+    return moves.map(sw => `${sw.type === 'expelled' ? 'ถูกขับจาก' : 'ย้ายจาก'}${esc(sw.from)}${sw.to !== party ? ` ไป${esc(sw.to)}` : ''} (${sw.to_year})`).join('<br>');
+  }
+  // District + compare: one column per election year (oldest first).
+  // เขต: seat winner with candidate name and party-switch row. บัญชีรายชื่อ: top party-list party, no names.
   function compareWinHTML(d) {
-    return `<div class="compare-wins">${COMPARE.map(s => {
-      const hit = sliceLeader(d.id, s.id);
-      if (!hit || hit.missing || hit.empty) {
-        return `<div class="win"><div class="who">${s.id}<small>${hit && hit.empty ? 'ไม่มีผล' : 'ไม่มีเขตนี้'}</small></div></div>`;
-      }
-      const who = state.score === 'const' && hit.L.name ? esc(hit.L.name) : esc(hit.party.name);
-      return `<div class="win"><span class="sw" style="background:${hit.party.color}"></span><div class="who">${who}<small>${s.id} · ${esc(hit.party.name)}</small></div></div>`;
-    }).join('')}</div>`;
+    const prov = provOf(d.pc).th;
+    const isConst = state.score === 'const';
+    const ok = h => h && !h.missing && !h.empty;
+    const cols = COMPARE.slice().sort((a, b) => a.id - b.id).map(s => {
+      const hit = sliceLeader(d.id, s.id, isConst ? 'const' : 'list');
+      const remark = isConst && ok(hit) ? switchRemark(s.id, prov, hit.year.byId.get(d.id).n, hit.L.name, hit.party.name) : '';
+      return { s, hit, remark };
+    });
+    const head = cols.map(({ s }) => `<th class="yh">${s.id}</th>`).join('');
+    const who = cols.map(({ hit }) => {
+      if (!ok(hit)) return `<td class="yc"><span class="muted">${hit && hit.empty ? 'ไม่มีผล' : 'ไม่มีเขตนี้'}</span></td>`;
+      return `<td class="yc"><div class="ident ident-v">
+        ${partyMark(hit.party.name, hit.party.color, 'xl')}
+        <div class="who">${isConst && hit.L.name ? `${esc(hit.L.name)}<small>${esc(hit.party.name)}</small>` : esc(hit.party.name)}</div>
+      </div></td>`;
+    }).join('');
+    const row = (label, fn) => `<tr class="srow"><th class="lab">${label}</th>${cols.map(({ hit }) => `<td class="num">${ok(hit) ? fn(hit) : '—'}</td>`).join('')}</tr>`;
+    const votes = row(isConst ? 'คะแนนแบ่งเขต' : 'คะแนนบัญชีรายชื่อ', h => `<span class="seats">${fmtInt(h.L.v)}</span><small>${h.L.good ? fmtPct(h.L.v / h.L.good) : '—'}</small>`);
+    const gap = row('ทิ้งห่าง', h => {
+      const second = h.L.runV ?? (h.L.rows && h.L.rows[1] ? h.L.rows[1][1] : null);
+      if (second == null || !h.L.good) return '—';
+      return `<span class="seats">${fmtInt(h.L.v - second)}</span><small>${fmtPct((h.L.v - second) / h.L.good)}</small>`;
+    });
+    // Party-switch row only when at least one year's winner moved in from another party.
+    const moves = cols.some(c => c.remark)
+      ? `<tr class="srow switch-row"><th class="lab">ย้ายพรรค</th>${cols.map(c => `<td class="num">${c.remark ? `<div class="switch-note">${c.remark}</div>` : '—'}</td>`).join('')}</tr>`
+      : '';
+    return `<table class="score-table board compare-t win-t">
+      <thead><tr><th class="lab"></th>${head}</tr></thead>
+      <tbody><tr class="who-row"><th class="lab">${isConst ? 'ผู้ชนะ สส.เขต' : 'พรรคอันดับ 1 บัญชีรายชื่อ'}</th>${who}</tr>${votes}${gap}${moves}</tbody>
+    </table>`;
   }
+
+
   // One expandable section per year: the winning party's policies in that district.
   function comparePolicyInner(d) {
     return COMPARE.map(s => {
@@ -872,7 +952,7 @@
       const open = state.policyOpen.has(s.id) ? ' open' : '';
       return `<details class="year-policy" data-year="${s.id}"${open}>
         <summary>
-          <span class="sw" style="background:${known ? hit.party.color : '#e4e2dc'}"></span>
+          ${known ? partyMark(hit.party.name, hit.party.color) : '<span class="sw" style="background:#e4e2dc"></span>'}
           <b>${s.id}</b><span class="party">${known ? esc(name) : 'ไม่มีผู้ชนะ'}</span>
           <span class="count">${count}</span>
         </summary>
@@ -933,22 +1013,22 @@
     const prov = provOf(d.pc);
     const L = leaderOf(d);
     const partyName = L ? pname(L.pi) : '';
-    const tabs = [['scores', 'ตารางคะแนน'], ['policy', 'นโยบาย'], ['gpp', 'เศรษฐกิจ']];
+    // Compare mode: the year-column table above already holds the scores, so the scores tab is dropped.
+    const tabs = [['scores', 'ตารางคะแนน'], ['policy', 'นโยบาย'], ['gpp', 'เศรษฐกิจ']].filter(([id]) => !(state.compare && id === 'scores'));
+    const tab = state.compare && state.tab === 'scores' ? 'policy' : state.tab;
     const showName = state.score === 'const' || year.singleBallot;
-    let body = state.tab === 'policy'
+    let body = tab === 'policy'
       ? (state.compare ? `<div id="panelBody">${comparePolicyInner(d)}</div>` : (L ? policyHTML(partyName) : '<p class="placeholder">ไม่มีผู้ชนะในมุมมองนี้</p>'))
-      : state.tab === 'gpp' ? gppHTML(prov.th)
-        : state.compare
-          ? `<table class="score-table"><thead><tr><th>ปี</th><th>พรรค</th>${state.score === 'const' ? '<th>ผู้สมัคร</th>' : ''}<th>คะแนน</th><th>สัดส่วน</th></tr></thead><tbody id="panelBody">${compareDistrictRowHTML(d)}</tbody></table>`
-          : `<table class="score-table"><thead><tr><th></th><th>พรรค</th>${showName ? '<th>ผู้สมัคร</th>' : ''}<th>คะแนน</th><th>สัดส่วน</th></tr></thead><tbody id="panelBody">${districtRowHTML(d)}</tbody></table>`;
+      : tab === 'gpp' ? gppHTML(prov.th)
+        : `<table class="score-table"><thead><tr><th></th><th>พรรค</th>${showName ? '<th>ผู้สมัคร</th>' : ''}<th>คะแนน</th><th>สัดส่วน</th></tr></thead><tbody id="panelBody">${districtRowHTML(d)}</tbody></table>`;
     const win = state.compare
       ? compareWinHTML(d)
-      : (L ? `<div class="win"><span class="sw" style="background:${color(L.pi)}"></span><div class="who">${esc(L.name || partyName)}<small>${esc(partyName)} · ${L.good ? fmtPct(L.v / L.good) : '—'}</small></div></div>` : '<p class="placeholder">ไม่มีผลคะแนนของเขตนี้ในมุมมองที่เลือก</p>');
+      : (L ? `<div class="win">${partyMark(partyName, color(L.pi), 'big')}<div class="who">${esc(L.name || partyName)}<small>${L.name ? `${esc(partyName)} · ` : (state.score === 'list' ? 'คะแนนบัญชีรายชื่อ · ' : '')}${L.good ? fmtPct(L.v / L.good) : '—'}</small></div></div>` : '<p class="placeholder">ไม่มีผลคะแนนของเขตนี้ในมุมมองที่เลือก</p>');
     el.innerHTML = `<h3>${esc(prov.th)} เขต ${d.n}</h3>
       <div class="prov-line">${state.compare ? 'เลขเขตเดียวกันในสามปี ขอบเขตแต่ละปีไม่เหมือนกัน' : `ปี ${year.id}`}</div>
       <button type="button" class="btn-ghost" id="unpin">กลับไปตารางรวม</button>
       ${win}
-      <div class="tabs" role="tablist">${tabs.map(([id, label]) => `<button type="button" role="tab" data-tab="${id}" aria-selected="${state.tab === id}">${label}</button>`).join('')}</div>
+      <div class="tabs" role="tablist">${tabs.map(([id, label]) => `<button type="button" role="tab" data-tab="${id}" aria-selected="${tab === id}">${label}</button>`).join('')}</div>
       <div id="tabBody">${body}</div>
       ${d.gap && state.tab === 'scores' && !state.compare ? `<p class="warn">คะแนน สส.เขต ไม่ตรงกับจำนวนบัตรดี ${Math.abs(d.gap).toFixed(2)}%</p>` : ''}`;
     bindPanel();
