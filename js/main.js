@@ -592,7 +592,7 @@
   const votesOf = (year, p, k) => (k === 'const' ? p.cv : k === 'list' ? p.pv : totalVotes(year, p));
   function scoreCell(year, p, k, extra = '') {
     const sel = state.score === k;
-    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span></td>`;
+    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span>${k === 'total' ? '' : `<small>${p.cv + p.pv > 0 ? fmtVotes(votesOf(year, p, k)) : '—'}</small>`}</td>`;
   }
   // หน้าต่างแรก: พรรคเรียงจากมากไปน้อยตามคะแนนที่เลือก
   function overallRowHTML() {
@@ -918,7 +918,7 @@
         <th class="${col === 'total' ? 'on' : 'dim'}">รวม</th>
       </tr></thead><tbody id="panelBody">${overallRowHTML()}</tbody></table>
       <div id="moreWrap">${showAllHTML()}</div>
-      <p class="note">ตัวเลขคือจำนวนที่นั่ง${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
+      <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง (คอลัมน์รวมแสดงเฉพาะที่นั่ง)${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
     return html;
   }
   function renderDetail() {
