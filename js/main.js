@@ -476,6 +476,30 @@
           : 'พรรคที่ได้คะแนนบัญชีรายชื่อสูงสุดในแต่ละเขต';
     L.append('span').attr('class', 'cap').text(caption);
     renderCompareKey();
+    if (state.compare) {
+      const seen = new Map();
+      let gap = false;
+      year.districts.forEach(d => {
+        COMPARE.forEach(s => {
+          const hit = sliceLeader(d.id, s.id);
+          if (!hit || hit.missing || hit.empty) { gap = true; return; }
+          const row = seen.get(hit.party.name) || { color: hit.party.color || '#a8a6a0', n: 0 };
+          row.n += 1;
+          seen.set(hit.party.name, row);
+        });
+      });
+      [...seen.entries()].sort((a, b) => b[1].n - a[1].n || a[0].localeCompare(b[0], 'th')).forEach(([name, row]) => {
+        const it = L.append('span').attr('class', 'item');
+        it.append('span').attr('class', 'sw').style('background', row.color);
+        it.append('span').text(name);
+      });
+      if (gap) {
+        const it = L.append('span').attr('class', 'item');
+        it.append('span').attr('class', 'sw').style('background', '#e4e2dc');
+        it.append('span').text('ไม่มีข้อมูล');
+      }
+      return;
+    }
     counts.slice(0, 6).forEach(([pi, n]) => {
       const it = L.append('span').attr('class', 'item');
       it.append('span').attr('class', 'sw').style('background', color(pi));
