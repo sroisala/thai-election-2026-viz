@@ -886,6 +886,7 @@
     const step = Math.min(10, n - state.limit);
     return `<button type="button" class="more-btn" id="moreBtn"><span>ดูเพิ่มอีก ${step} อันดับ</span><small>แสดง ${state.limit} จาก ${n} พรรค</small></button>`;
   }
+  const SORT_OPTS = [['total', 'เรียงตามที่นั่งรวม'], ['const', 'เรียงตามจำนวนเขต'], ['list', 'เรียงตามจำนวนบัญชีรายชื่อ']];
   function boardHTML() {
     if (state.compare) {
       return `<p class="eyebrow">เทียบ 3 ปี</p>
@@ -907,9 +908,12 @@
       <h3>ตารางคะแนน ปี ${year.id}</h3>
       <div class="panel-tools">
         <input id="panelQuery" class="panel-search" type="search" placeholder="ค้นหาชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="ค้นหาชื่อพรรค">
-        <select id="panelSort" class="panel-sort" aria-label="เรียงลำดับ">
-          ${[['total', 'เรียงตามที่นั่งรวม'], ['const', 'เรียงตามจำนวนเขต'], ['list', 'เรียงตามจำนวนบัญชีรายชื่อ']].map(([k, l]) => `<option value="${k}"${state.sortKey === k ? ' selected' : ''}>${l}</option>`).join('')}
-        </select>
+        <div class="sort-dd" id="panelSort">
+          <button type="button" class="sort-btn" id="sortBtn" aria-haspopup="listbox" aria-expanded="false"><span>${SORT_OPTS.find(o => o[0] === state.sortKey)[1]}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sort-menu" id="sortMenu" role="listbox" hidden>
+            ${SORT_OPTS.map(([k, l]) => `<li role="option" tabindex="0" data-k="${k}" aria-selected="${state.sortKey === k}">${l}</li>`).join('')}
+          </ul>
+        </div>
       </div>
       <table class="score-table board"><thead><tr>
         <th class="winh">ผู้ชนะตามลำดับ</th>
@@ -964,14 +968,26 @@
       const mw = document.getElementById('moreWrap');
       if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
     };
-    const sortSel = document.getElementById('panelSort');
-    if (sortSel) sortSel.onchange = e => {
-      state.sortKey = e.target.value;
-      state.limit = 10;
-      document.getElementById('panelBody').innerHTML = overallRowHTML();
-      const mw = document.getElementById('moreWrap');
-      if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
-    };
+    const sortBtn = document.getElementById('sortBtn'), sortMenu = document.getElementById('sortMenu');
+    if (sortBtn) {
+      const close = () => { sortMenu.hidden = true; sortBtn.setAttribute('aria-expanded', 'false'); };
+      sortBtn.onclick = e => { e.stopPropagation(); const open = sortMenu.hidden; sortMenu.hidden = !open; sortBtn.setAttribute('aria-expanded', String(open)); };
+      const pick = li => {
+        state.sortKey = li.dataset.k;
+        state.limit = 10;
+        sortBtn.firstElementChild.textContent = SORT_OPTS.find(o => o[0] === state.sortKey)[1];
+        sortMenu.querySelectorAll('li').forEach(x => x.setAttribute('aria-selected', String(x === li)));
+        close();
+        document.getElementById('panelBody').innerHTML = overallRowHTML();
+        const mw = document.getElementById('moreWrap');
+        if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
+      };
+      sortMenu.querySelectorAll('li').forEach(li => {
+        li.onclick = () => pick(li);
+        li.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(li); } if (e.key === 'Escape') { close(); sortBtn.focus(); } };
+      });
+      document.addEventListener('click', e => { if (!sortMenu.hidden && !e.target.closest('#panelSort')) close(); });
+    }
     const bindMore = () => {
       const mb = document.getElementById('moreBtn');
       if (mb) mb.onclick = () => {
