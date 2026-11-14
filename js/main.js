@@ -86,6 +86,10 @@
       }
       districts.push(o);
     }
+    // คะแนนบัญชีรายชื่อระดับประเทศตามผลทางการ (ถ้ามี) ทับยอดที่รวมจากรายเขต
+    if (raw.partyListVotes && !raw.singleBallot) {
+      for (const [name, v] of Object.entries(raw.partyListVotes)) if (partyIndex.has(name)) parties[partyIndex.get(name)].pv = +v;
+    }
     let note = raw.note || '';
     if (unknown.size) {
       const extra = `ชื่อจังหวัดที่ไม่ตรงกับ data/provinces.json จึงไม่ขึ้นบนแผนที่: ${[...unknown].join(', ')}`;
@@ -97,6 +101,7 @@
       listSeats: raw.listSeats || 0,
       majority: raw.majority || 251,
       singleBallot: !!raw.singleBallot,
+      pvTotal: +raw.partyListVotesTotal || 0,
       note, parties, districts,
     };
   }
@@ -466,7 +471,7 @@
   function overallRows() {
     const year = current();
     const baseC = d3.sum(year.parties, p => p.cv) || 1;
-    const baseP = d3.sum(year.parties, p => p.pv) || 1;
+    const baseP = year.pvTotal || d3.sum(year.parties, p => p.pv) || 1;
     return year.parties
       .filter(p => p.cs + p.pls > 0 || p.cv + p.pv > 0)
       .sort((a, b) => metric(b) - metric(a) || votesOf(year, b, state.score) - votesOf(year, a, state.score) || b.cs - a.cs)
