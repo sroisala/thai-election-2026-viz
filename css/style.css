@@ -334,7 +334,16 @@ a { color: #1c5cab; }
 /* ช่องกรองชื่อพรรคกว้างครึ่งหนึ่ง */
 .panel-tools { display: flex; gap: 8px; margin: 10px 0 8px; align-items: center; }
 .panel-tools .panel-search { width: auto; flex: 1 1 0; min-width: 0; margin: 0; }
-.panel-sort { flex: 1 1 0; min-width: 0; font: inherit; font-size: 13px; padding: 7px 8px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); color: inherit; }
+.sort-dd { position: relative; flex: 1 1 0; min-width: 0; }
+.sort-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 6px; font: inherit; font-size: 13px; padding: 7px 10px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); color: inherit; cursor: pointer; text-align: left; }
+.sort-btn span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sort-btn svg { flex: none; color: var(--text-2); transition: transform .15s; }
+.sort-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.sort-menu { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; right: 0; margin: 0; padding: 4px; list-style: none; background: var(--surface); border: 1px solid var(--line-2); border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.14); }
+.sort-menu li { padding: 8px 10px 8px 26px; font-size: 13px; border-radius: 6px; cursor: pointer; position: relative; }
+.sort-menu li:hover, .sort-menu li:focus { background: var(--line, #eceae4); outline: none; }
+.sort-menu li[aria-selected="true"] { font-weight: 600; }
+.sort-menu li[aria-selected="true"]::before { content: "✓"; position: absolute; left: 9px; }
 /* ดรอปดาวน์จำนวนพรรค */
 .limit-sel { display: flex; align-items: center; gap: 10px; margin: 12px 0 4px; font-size: 13px; color: var(--text-2, #555); }
 .limit-sel select { font: inherit; padding: 6px 10px; border: 1px solid var(--line, #d9d6cf); border-radius: 8px; background: var(--bg, #fff); color: var(--text, #1b1b19); }
