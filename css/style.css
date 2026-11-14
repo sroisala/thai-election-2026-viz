@@ -332,7 +332,9 @@ a { color: #1c5cab; }
 .pop-cmp .compare-t td.yon .lay, .pop-cmp .compare-t td.yon .who, .pop-cmp .compare-t td.yon .seats, .pop-cmp .compare-t td.yon small { animation: zoom-hold .6s cubic-bezier(.2,.9,.3,1.2) both; }
 @media (prefers-reduced-motion: reduce) { .pop-score *, .pop-year *, .pop-cmp * { animation: none !important; } }
 /* ช่องกรองชื่อพรรคกว้างครึ่งหนึ่ง */
-.panel-search { width: 50%; min-width: 180px; }
+.panel-tools { display: flex; gap: 8px; margin: 10px 0 8px; align-items: center; }
+.panel-tools .panel-search { width: auto; flex: 1 1 0; min-width: 0; margin: 0; }
+.panel-sort { flex: 1 1 0; min-width: 0; font: inherit; font-size: 13px; padding: 7px 8px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); color: inherit; }
 /* ดรอปดาวน์จำนวนพรรค */
 .limit-sel { display: flex; align-items: center; gap: 10px; margin: 12px 0 4px; font-size: 13px; color: var(--text-2, #555); }
 .limit-sel select { font: inherit; padding: 6px 10px; border: 1px solid var(--line, #d9d6cf); border-radius: 8px; background: var(--bg, #fff); color: var(--text, #1b1b19); }

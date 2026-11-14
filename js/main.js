@@ -182,7 +182,7 @@
   const state = { limit: 10, anim: null,
     year: index.includes('2569') ? '2569' : YEARS[YEARS.length - 1].id,
     score: 'total', selected: null, tab: 'scores', compare: false,
-    scoreQuery: '', policyTopic: '', policyOpen: new Set([COMPARE[0].id]),
+    scoreQuery: '', sortKey: 'total', policyTopic: '', policyOpen: new Set([COMPARE[0].id]),
   };
   let byId = new Map();
   const current = () => yearById.get(state.year);
@@ -474,7 +474,7 @@
     const baseP = year.pvTotal || d3.sum(year.parties, p => p.pv) || 1;
     return year.parties
       .filter(p => p.cs + p.pls > 0 || p.cv + p.pv > 0)
-      .sort((a, b) => metric(b) - metric(a) || votesOf(year, b, state.score) - votesOf(year, a, state.score) || b.cs - a.cs)
+      .sort((a, b) => seatsOf(b, state.sortKey) - seatsOf(a, state.sortKey) || (b.cs + b.pls) - (a.cs + a.pls) || votesOf(year, b, state.sortKey) - votesOf(year, a, state.sortKey) || b.cs - a.cs)
       // ใส่อันดับจริงก่อนกรองชื่อ เพื่อให้เลขอันดับคงเดิมตอนค้นหา
       .map((p, i) => ({ ...p, rank: i + 1, shareC: p.cv / baseC, shareP: p.pv / baseP }))
       .filter(p => matches(state.scoreQuery, p.name, p.en));
@@ -592,7 +592,7 @@
   const votesOf = (year, p, k) => (k === 'const' ? p.cv : k === 'list' ? p.pv : totalVotes(year, p));
   function scoreCell(year, p, k, extra = '') {
     const sel = state.score === k;
-    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span><small>${p.cv + p.pv > 0 ? fmtVotes(votesOf(year, p, k)) : '—'}</small></td>`;
+    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span></td>`;
   }
   // หน้าต่างแรก: พรรคเรียงจากมากไปน้อยตามคะแนนที่เลือก
   function overallRowHTML() {
@@ -905,7 +905,12 @@
     const col = state.score;
     let html = `<p class="eyebrow">ภาพรวมทั้งประเทศ</p>
       <h3>ตารางคะแนน ปี ${year.id}</h3>
-      <input id="panelQuery" class="panel-search" type="search" placeholder="ค้นหาชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="ค้นหาชื่อพรรค">
+      <div class="panel-tools">
+        <input id="panelQuery" class="panel-search" type="search" placeholder="ค้นหาชื่อพรรค" value="${esc(state.scoreQuery)}" aria-label="ค้นหาชื่อพรรค">
+        <select id="panelSort" class="panel-sort" aria-label="เรียงลำดับ">
+          ${[['total', 'เรียงตามที่นั่งรวม'], ['const', 'เรียงตามจำนวนเขต'], ['list', 'เรียงตามจำนวนบัญชีรายชื่อ']].map(([k, l]) => `<option value="${k}"${state.sortKey === k ? ' selected' : ''}>${l}</option>`).join('')}
+        </select>
+      </div>
       <table class="score-table board"><thead><tr>
         <th class="winh">ผู้ชนะตามลำดับ</th>
         <th class="${col === 'const' ? 'on' : 'dim'}">เขต</th>
@@ -913,7 +918,7 @@
         <th class="${col === 'total' ? 'on' : 'dim'}">รวม</th>
       </tr></thead><tbody id="panelBody">${overallRowHTML()}</tbody></table>
       <div id="moreWrap">${showAllHTML()}</div>
-      <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
+      <p class="note">ตัวเลขคือจำนวนที่นั่ง${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
     return html;
   }
   function renderDetail() {
@@ -956,6 +961,14 @@
       const host = document.getElementById('panelBody');
       if (!host) return;
       host.innerHTML = overallRowHTML();
+      const mw = document.getElementById('moreWrap');
+      if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
+    };
+    const sortSel = document.getElementById('panelSort');
+    if (sortSel) sortSel.onchange = e => {
+      state.sortKey = e.target.value;
+      state.limit = 10;
+      document.getElementById('panelBody').innerHTML = overallRowHTML();
       const mw = document.getElementById('moreWrap');
       if (mw) { mw.innerHTML = showAllHTML(); bindMore(); }
     };
