@@ -321,7 +321,7 @@ a { color: #1c5cab; }
 @keyframes zoom-hold { 0% { transform: scale(.9); opacity: .5; } 55% { transform: scale(calc(var(--z) + .1)); opacity: 1; } 100% { transform: scale(var(--z)); opacity: 1; } }
 @keyframes pop-in { 0% { transform: scale(.88); opacity: .35; } 55% { transform: scale(1.09); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 .score-table.board:not(.compare-t) td.num.on .seats, .score-table.board:not(.compare-t) td.num.on small { display: block; --z: 1.4; transform: scale(var(--z)); transform-origin: 100% 50%; }
-.pop-score .score-table.board:not(.compare-t) td.num.on .seats, .pop-score .score-table.board:not(.compare-t) td.num.on small { animation: zoom-hold .55s cubic-bezier(.2,.9,.3,1.2) both; }
+.pop-score .score-table.board:not(.compare-t) td.num.on:not(.tot) .seats, .pop-score .score-table.board:not(.compare-t) td.num.on:not(.tot) small { animation: zoom-hold .55s cubic-bezier(.2,.9,.3,1.2) both; }
 .pop-year .score-table.board:not(.compare-t) .lay { animation: pop-in .6s cubic-bezier(.2,.9,.3,1.2) both; transform-origin: 50% 100%; }
 .pop-year .score-table.board:not(.compare-t) .who { animation: pop-in .55s cubic-bezier(.2,.9,.3,1.2) both; transform-origin: 0 50%; }
 .pop-year .score-table.board:not(.compare-t) td.num .seats { display: inline-block; animation: pop-in .55s cubic-bezier(.2,.9,.3,1.2) both; }

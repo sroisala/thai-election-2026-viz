@@ -31,7 +31,7 @@
     { id: '2562', part: 'right' },
   ];
   const provOf = pc => provinces[pc];
-  const SCORES = [['const', 'เขต'], ['list', 'บัญชีรายชื่อ'], ['total', 'รวม']];
+  const SCORES = [['const', 'เขต'], ['list', 'บัญชีรายชื่อ']];
   const fmtPct = d3.format('.1%');
   const fmtInt = d3.format(',');
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -281,8 +281,8 @@
       .attr('aria-checked', s => String(s[0] === state.score))
       .text(s => s[1])
       .on('click', (e, s) => {
-        if (state.score === s[0]) return;
-        state.score = s[0];
+        // กดซ้ำที่ตัวเลือกเดิมเพื่อยกเลิก กลับไปดูคะแนนรวม
+        state.score = state.score === s[0] ? 'total' : s[0];
         state.anim = 'score';
         hideTip();
         render();
@@ -591,8 +591,8 @@
   const seatsOf = (p, k) => (k === 'const' ? p.cs : k === 'list' ? p.pls : p.cs + p.pls);
   const votesOf = (year, p, k) => (k === 'const' ? p.cv : k === 'list' ? p.pv : totalVotes(year, p));
   function scoreCell(year, p, k, extra = '') {
-    const sel = state.score === k;
-    return `<td class="num ${sel ? 'on' : 'dim'}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span>${k === 'total' ? '' : `<small>${p.cv + p.pv > 0 ? fmtVotes(votesOf(year, p, k)) : '—'}</small>`}</td>`;
+    const sel = state.score === k || k === 'total';
+    return `<td class="num ${sel ? 'on' : 'dim'}${k === 'total' ? ' tot' : ''}${extra}"><span class="seats">${fmtInt(seatsOf(p, k))}</span>${k === 'total' ? '' : `<small>${p.cv + p.pv > 0 ? fmtVotes(votesOf(year, p, k)) : '—'}</small>`}</td>`;
   }
   // หน้าต่างแรก: พรรคเรียงจากมากไปน้อยตามคะแนนที่เลือก
   function overallRowHTML() {
@@ -622,13 +622,13 @@
         <div class="who">${esc(pm.name)}<small>${esc(party.name)}</small></div>
       </div></td>`;
     }).join('');
-    const rows = KEYS.map(k => `<tr class="srow ${state.score === k ? 'row-on' : 'row-dim'}">
+    const rows = KEYS.map(k => `<tr class="srow ${state.score === k || k === 'total' ? 'row-on' : 'row-dim'}">
       <th class="lab">${SCORE_LABEL[k]}</th>
       ${YEARS.map(y => {
         const { party } = pmParty(y);
         const cls = `num ${y.id === state.year ? 'yon' : ''}`;
         if (!party) return `<td class="${cls}">—</td>`;
-        return `<td class="${cls}"><span class="seats">${fmtInt(seatsOf(party, k))}</span><small>${fmtVotes(votesOf(y, party, k))}</small></td>`;
+        return `<td class="${cls}"><span class="seats">${fmtInt(seatsOf(party, k))}</span>${k === 'total' ? '' : `<small>${fmtVotes(votesOf(y, party, k))}</small>`}</td>`;
       }).join('')}
     </tr>`).join('');
     return `<table class="score-table board compare-t">
@@ -893,7 +893,7 @@
         <h3>พรรคของนายกรัฐมนตรีในแต่ละปี</h3>
         <p class="prov-line">ที่นั่งและคะแนนเสียงของพรรคที่นายกฯ สังกัด เทียบกันทั้งสามการเลือกตั้ง</p>
         ${compareTableHTML()}
-        <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง นายกฯ คือผู้ได้รับเลือกจากสภาหลังเลือกตั้งครั้งนั้น ปี 2566 ภายหลังเปลี่ยนนายกฯ อีกสองครั้ง ชื่อพรรคที่ยุบหรือตั้งใหม่ไม่ถูกนับต่อกัน</p>`;
+        <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง (แถวรวมแสดงเฉพาะที่นั่ง) นายกฯ คือผู้ได้รับเลือกจากสภาหลังเลือกตั้งครั้งนั้น ปี 2566 ภายหลังเปลี่ยนนายกฯ อีกสองครั้ง ชื่อพรรคที่ยุบหรือตั้งใหม่ไม่ถูกนับต่อกัน</p>`;
     }
     const year = current();
     const shown = year.parties.filter(p => metric(p) > 0).sort((a, b) => metric(b) - metric(a));
@@ -919,7 +919,7 @@
         <th class="winh">ผู้ชนะตามลำดับ</th>
         <th class="${col === 'const' ? 'on' : 'dim'}">เขต</th>
         <th class="${col === 'list' ? 'on' : 'dim'}">บัญชีรายชื่อ</th>
-        <th class="${col === 'total' ? 'on' : 'dim'}">รวม</th>
+        <th class="on tot">รวม</th>
       </tr></thead><tbody id="panelBody">${overallRowHTML()}</tbody></table>
       <div id="moreWrap">${showAllHTML()}</div>
       <p class="note">ตัวเลขใหญ่คือที่นั่ง ตัวเล็กคือคะแนนเสียง (คอลัมน์รวมแสดงเฉพาะที่นั่ง)${year.singleBallot ? ' ปี 2562 ใช้บัตรใบเดียว คะแนนเขตและบัญชีรายชื่อจึงเป็นคะแนนชุดเดียวกัน' : ''}</p>`;
