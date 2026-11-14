@@ -469,9 +469,10 @@
     const baseP = d3.sum(year.parties, p => p.pv) || 1;
     return year.parties
       .filter(p => p.cs + p.pls > 0 || p.cv + p.pv > 0)
-      .filter(p => matches(state.scoreQuery, p.name, p.en))
       .sort((a, b) => metric(b) - metric(a) || votesOf(year, b, state.score) - votesOf(year, a, state.score) || b.cs - a.cs)
-      .map(p => ({ ...p, shareC: p.cv / baseC, shareP: p.pv / baseP }));
+      // ใส่อันดับจริงก่อนกรองชื่อ เพื่อให้เลขอันดับคงเดิมตอนค้นหา
+      .map((p, i) => ({ ...p, rank: i + 1, shareC: p.cv / baseC, shareP: p.pv / baseP }))
+      .filter(p => matches(state.scoreQuery, p.name, p.en));
   }
   function districtRows(d) {
     const year = current();
@@ -594,8 +595,8 @@
     const all = overallRows();
     // แสดงตามจำนวนที่เลือกในดรอปดาวน์ (0 = ทุกพรรค) ถ้ากำลังค้นชื่อพรรคจะแสดงทั้งหมดที่ตรง
     const rows = state.scoreQuery ? all : all.slice(0, state.limit);
-    return rows.map((p, i) => `<tr class="${i === 0 ? 'first' : ''}">
-      <td class="name win-cell"><div class="wrow">${partyIdent(year.id, p, i < 10, i + 1)}</div></td>
+    return rows.map(p => `<tr class="${p.rank === 1 ? 'first' : ''}">
+      <td class="name win-cell"><div class="wrow">${partyIdent(year.id, p, p.rank <= 10, p.rank)}</div></td>
       ${KEYS.map(k => scoreCell(year, p, k)).join('')}
     </tr>`).join('') || '<tr><td colspan="4">ไม่พบพรรคที่ค้น</td></tr>';
   }
