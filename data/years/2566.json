@@ -14,31 +14,31 @@
     },
     {
       "name": "เพื่อไทย",
-      "color": "#da3731",
+      "color": "#b01530",
       "partyListSeats": 29,
       "en": "Pheu Thai"
     },
     {
       "name": "ภูมิใจไทย",
-      "color": "#0c149c",
+      "color": "#3358b8",
       "partyListSeats": 3,
       "en": "Bhumjaithai"
     },
     {
       "name": "พลังประชารัฐ",
-      "color": "#1f68dd",
+      "color": "#5b6ea8",
       "partyListSeats": 1,
       "en": "Palang Pracharath"
     },
     {
       "name": "รวมไทยสร้างชาติ",
-      "color": "#aa2d38",
+      "color": "#1e3a8a",
       "partyListSeats": 13,
       "en": "United Thai Nation"
     },
     {
       "name": "ประชาธิปัตย์",
-      "color": "#06aff3",
+      "color": "#4fb3e6",
       "partyListSeats": 3,
       "en": "Democrat"
     },
@@ -50,13 +50,13 @@
     },
     {
       "name": "ประชาชาติ",
-      "color": "#a35f26",
+      "color": "#c4a35a",
       "partyListSeats": 2,
       "en": "Prachachat"
     },
     {
       "name": "ไทยสร้างไทย",
-      "color": "#003dff",
+      "color": "#1d4ed8",
       "partyListSeats": 1,
       "en": "Thai Sang Thai"
     },
@@ -114,7 +114,7 @@
     },
     {
       "name": "ไทยภักดี",
-      "color": "#CBBA01",
+      "color": "#cbba01",
       "partyListSeats": 0
     },
     {

@@ -181,6 +181,10 @@
       }
     }
     const placed = Object.fromEntries(nodes.map(n => [n.pc, n]));
+    // Samut Songkhram (75) gets squeezed between Ratchaburi (70) and Samut Sakhon with no room for its name,
+    // so its dot sits in the open space left of Ratchaburi instead.
+    const ss = placed['75'], rb = placed['70'];
+    if (ss && rb) { ss.x = rb.x - rb.reach - ss.reach - 14; ss.y = rb.y; }
     const round = v => Math.round(v * 10) / 10;
     let minX = 0, minY = 0, maxX = map.w, maxY = map.h;
     for (const year of years) {

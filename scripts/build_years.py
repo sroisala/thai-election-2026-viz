@@ -377,13 +377,45 @@ def publish(years, provinces):
     (year_dir / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=2) + '\n')
     for year in years:
         dest = year_dir / f"{year['id']}.json"
-        dest.write_text(json.dumps(public_year(year, provinces), ensure_ascii=False, indent=2) + '\n')
+        out = public_year(year, provinces)
+        if dest.exists():
+            out = keep_manual(out, json.loads(dest.read_text()))
+        dest.write_text(json.dumps(out, ensure_ascii=False, indent=2) + '\n')
         print('wrote', dest, 'bytes', dest.stat().st_size)
+
+
+def keep_manual(built, old):
+    """Hand edits in the published file win over a rebuild (e.g. the Chiang Mai 8 re-vote in 2562,
+    partyListVotes in 2566). A rebuild only adds keys, parties and districts the file does not have yet."""
+    out = dict(old)
+    for k, v in built.items():
+        out.setdefault(k, v)
+    names = {p['name'] for p in old.get('parties', [])}
+    out['parties'] = old.get('parties', []) + [p for p in built['parties'] if p['name'] not in names]
+    seats = {(d['province'], d['district']) for d in old.get('districts', [])}
+    out['districts'] = old.get('districts', []) + [
+        d for d in built['districts'] if (d['province'], d['district']) not in seats]
+    return out
+
+
+def unify_colors(years):
+    """One colour per party in every year, so compare mode reads a stronghold as one colour.
+    COLOR_2569 wins; otherwise the party's latest non-grey colour from the sources."""
+    canon = {}
+    for year in years:
+        for p in year['parties']:
+            if p['color'] and p['color'].lower() != OTHER:
+                canon[p['name']] = p['color'].lower()
+    canon.update(COLOR_2569)
+    for year in years:
+        for p in year['parties']:
+            p['color'] = canon.get(p['name'], OTHER)
 
 
 def main():
     base, by_name = load_provinces()
     years = [build_2562(by_name), build_2566(by_name), build_2569(base)]
+    unify_colors(years)
     def counts(year):
         c = defaultdict(int)
         for d in year['districts']:

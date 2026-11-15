@@ -8,13 +8,13 @@
   "parties": [
     {
       "name": "เพื่อไทย",
-      "color": "#da3731",
+      "color": "#b01530",
       "partyListSeats": 0,
       "en": "Pheu Thai"
     },
     {
       "name": "พลังประชารัฐ",
-      "color": "#1f68dd",
+      "color": "#5b6ea8",
       "partyListSeats": 19,
       "en": "Palang Pracharath"
     },
@@ -26,13 +26,13 @@
     },
     {
       "name": "ประชาธิปัตย์",
-      "color": "#06aff3",
+      "color": "#4fb3e6",
       "partyListSeats": 20,
       "en": "Democrat"
     },
     {
       "name": "ภูมิใจไทย",
-      "color": "#209fa0",
+      "color": "#3358b8",
       "partyListSeats": 12,
       "en": "Bhumjaithai"
     },
@@ -50,7 +50,7 @@
     },
     {
       "name": "ประชาชาติ",
-      "color": "#a35f26",
+      "color": "#c4a35a",
       "partyListSeats": 1,
       "en": "Prachachat"
     },
@@ -68,7 +68,7 @@
     },
     {
       "name": "เพื่อชาติ",
-      "color": "#c0bcc3",
+      "color": "#6cb0a8",
       "partyListSeats": 5,
       "en": "Puea Chat"
     },
@@ -94,7 +94,7 @@
     },
     {
       "name": "ไทยศรีวิไลย์",
-      "color": "#0c5197",
+      "color": "#a0afba",
       "partyListSeats": 1
     },
     {
@@ -154,12 +154,12 @@
     },
     {
       "name": "ถิ่นกาขาวชาววิไล",
-      "color": "#bd646d",
+      "color": "#fb04fb",
       "partyListSeats": 0
     },
     {
       "name": "แผ่นดินธรรม",
-      "color": "#594835",
+      "color": "#852e1c",
       "partyListSeats": 0
     },
     {
@@ -199,7 +199,7 @@
     },
     {
       "name": "สามัญชน",
-      "color": "#010101",
+      "color": "#3c3c3c",
       "partyListSeats": 0
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "name": "พลังไทยรักชาติ",
-      "color": "#fef102",
+      "color": "#54c04c",
       "partyListSeats": 0
     },
     {
@@ -264,7 +264,7 @@
     },
     {
       "name": "รวมใจไทย",
-      "color": "#313091",
+      "color": "#eec49a",
       "partyListSeats": 0
     },
     {
@@ -379,7 +379,7 @@
     },
     {
       "name": "รักษ์ธรรม",
-      "color": "#3839a8",
+      "color": "#dbdc9c",
       "partyListSeats": 0
     },
     {
