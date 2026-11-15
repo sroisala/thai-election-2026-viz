@@ -75,7 +75,7 @@
       if (d.voteGap) o.gap = +d.voteGap;
       if (cands.length) {
         o.c = cands.map(([pi, v, name]) => (name ? [pi, v, name] : [pi, v]));
-        o.good = d3.sum(cands, c => c[1]);
+        o.good = +d.validVotes || d3.sum(cands, c => c[1]);
         parties[cands[0][0]].cs += 1;
         cands.forEach(([pi, v]) => { parties[pi].cv += v; });
         if (raw.singleBallot) cands.forEach(([pi, v]) => { parties[pi].pv += v; });

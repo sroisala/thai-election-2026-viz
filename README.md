@@ -32,7 +32,7 @@ The three election years are complete. Do not add another year. What is left is 
 
 - **2569** — `data/years/2569.json`, from กกต. Form สส.6/1 via [killernay/election-69-OCR-result](https://github.com/killernay/election-69-OCR-result). The four gaps that form did not cover (Bangkok 15, Prachinburi 2, Nan 1, and the Udon Thani 6 party-list ballot) are filled from the [ectreport69 workbook](https://ectreport69.ect.go.th/data/excel/election_result.xlsx). The raw OCR input is `data/source/election-2569.json`.
 - **2566** — `data/years/2566.json`, from the กกต. ectreport66 workbook at 100% counted. One constituency differs from the final certified seat total. Party-list seats are the certified allocation.
-- **2562** — `data/years/2562.json`, from [electinth/past-election-map](https://github.com/electinth/past-election-map). Election-day count, so Chiang Mai district 8 still shows the later-voided result.
+- **2562** — `data/years/2562.json`, from [electinth/past-election-map](https://github.com/electinth/past-election-map). Election-day count, except Chiang Mai district 8, which uses the unofficial 26 May 2019 re-vote result (only the top two candidates are available), so seats match the final result.
 - Province shapes in `data/map.json`, from [apisit/thailand.json](https://github.com/apisit/thailand.json).
 
 Parties that were dissolved and refounded between elections are not linked. ก้าวไกล in 2566 and ประชาชน in 2569 stay separate.
